@@ -1,0 +1,13 @@
+Logfile initialized
+[INFO] logfile = /Users/ptamzz/Documents/Titanium_Studio_Workspace/Jellow/build.log
+[DEBUG] /Users/ptamzz/Library/Application Support/Titanium/mobilesdk/osx/2.1.3.GA/android/builder.py simulator Jellow /Applications/android-sdk-macosx /Users/ptamzz/Documents/Titanium_Studio_Workspace/Jellow com.ptamzz.jellow 3 HVGA 
+[INFO] Building Jellow for Android ... one moment
+[INFO] Titanium SDK version: 2.1.3 (10/02/12 16:16 15997d0)
+[DEBUG] Waiting for device to be ready ...
+[TRACE] adb devices returned 0 devices/emulators
+[TRACE] adb devices returned 0 devices/emulators
+[TRACE] adb devices returned 0 devices/emulators
+[TRACE] adb devices returned 0 devices/emulators
+[TRACE] adb devices returned 0 devices/emulators
+[TRACE] adb devices returned 0 devices/emulators
+[ERROR] Timed out waiting for emulator to be ready, you may need to close the emulator and try again

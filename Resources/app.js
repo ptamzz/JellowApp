@@ -211,195 +211,196 @@ var eatingButtons =[
 		{ title: 'Pepper', path: 'images/eating/addons/pepper.png'},	//Button: 96
 		{ title: 'Pickle', path: 'images/eating/addons/pickle.png'},	//Button: 97
 		{ title: 'Salt', path: 'images/eating/addons/salt.png'},		//Button: 98
-		{ title: 'Sauce', path: 'images/eating/addons/sauce.png'},		//Button: 100
-		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'}		//Button: 101
+		{ title: 'Sauce', path: 'images/eating/addons/sauce.png'},		//Button: 99
+		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'}		//Button: 100
 	]
 	
 	// Beverages buttons
 	var beveragesButtons =[
-		{ title: 'Juice', path: 'images/eating/beverages/juice.png'},			//Button: 102
-		{ title: 'Milk', path: 'images/eating/beverages/milk.png'},				//Button: 103
-		{ title: 'Milkshake', path: 'images/eating/beverages/milkshake.png'},	//Button: 104
-		{ title: 'Tea', path: 'images/eating/beverages/tea.png'}				//Button: 105
+		{ title: 'Juice', path: 'images/eating/beverages/juice.png'},			//Button: 101
+		{ title: 'Milk', path: 'images/eating/beverages/milk.png'},				//Button: 102
+		{ title: 'Milkshake', path: 'images/eating/beverages/milkshake.png'},	//Button: 103
+		{ title: 'Tea', path: 'images/eating/beverages/tea.png'}				//Button: 104
 	]
 	
 	// Breakfast buttons
 	var breakfastButtons =[
-		{ title: 'Bread', path: 'images/eating/breakfast/bread.png'},				//Button: 106
-		{ title: 'Cornflakes', path: 'images/eating/breakfast/cornflakes.png'},		//Button: 107
-		{ title: 'Eggs', path: 'images/eating/breakfast/eggs.png'},					//Button: 108
-		{ title: 'Milk', path: 'images/eating/breakfast/milk.png'},					//Button: 109
-		{ title: 'Porridge', path: 'images/eating/breakfast/porridge.png'},			//Button: 120
-		{ title: 'Rice', path: 'images/eating/breakfast/rice.png'}					//Button: 121
+		{ title: 'Bread', path: 'images/eating/breakfast/bread.png'},				//Button: 105
+		{ title: 'Cornflakes', path: 'images/eating/breakfast/cornflakes.png'},		//Button: 106
+		{ title: 'Eggs', path: 'images/eating/breakfast/eggs.png'},					//Button: 107
+		{ title: 'Milk', path: 'images/eating/breakfast/milk.png'},					//Button: 108
+		{ title: 'Porridge', path: 'images/eating/breakfast/porridge.png'},			//Button: 109
+		{ title: 'Rice', path: 'images/eating/breakfast/rice.png'}					//Button: 110
 	]
 	
 	// Cutlery buttons
 	var cutleryButtons =[
-		{ title: 'Bowl', path: 'images/eating/cutlery/bowl.png'},		//Button: 122
-		{ title: 'Fork', path: 'images/eating/cutlery/fork.png'},		//Button: 123
-		{ title: 'Glass', path: 'images/eating/cutlery/glass.png'},		//Button: 124
-		{ title: 'Knife', path: 'images/eating/cutlery/knife.png'},		//Button: 125
-		{ title: 'Plate', path: 'images/eating/cutlery/plate.png'},		//Button: 126
-		{ title: 'Spoon', path: 'images/eating/cutlery/spoon.png'}		//Button: 127
+		{ title: 'Bowl', path: 'images/eating/cutlery/bowl.png'},		//Button: 111
+		{ title: 'Fork', path: 'images/eating/cutlery/fork.png'},		//Button: 112
+		{ title: 'Glass', path: 'images/eating/cutlery/glass.png'},		//Button: 113
+		{ title: 'Knife', path: 'images/eating/cutlery/knife.png'},		//Button: 114
+		{ title: 'Plate', path: 'images/eating/cutlery/plate.png'},		//Button: 115
+		{ title: 'Spoon', path: 'images/eating/cutlery/spoon.png'}		//Button: 116
 	]
 	
 	// Meal: Dinner/Lunch buttons
 	var mealButtons =[
-		{ title: 'Curd', path: 'images/eating/meal/curd.png'},				//Button: 128
-		{ title: 'Curry', path: 'images/eating/meal/curry.png'},			//Button: 129
-		{ title: 'Dal', path: 'images/eating/meal/dal.png'},				//Button: 130
-		{ title: 'Khichdi', path: 'images/eating/meal/khichdi.png'},		//Button: 131
-		{ title: 'NonVeg', path: 'images/eating/meal/nonveg.png'},			//Button: 132
-		{ title: 'Pizza', path: 'images/eating/meal/pizza.png'},			//Button: 133
-		{ title: 'Rice', path: 'images/eating/meal/rice.png'},				//Button: 134
-		{ title: 'Roti', path: 'images/eating/meal/roti.png'}				//Button: 135
+		{ title: 'Curd', path: 'images/eating/meal/curd.png'},				//Button: 117
+		{ title: 'Curry', path: 'images/eating/meal/curry.png'},			//Button: 118
+		{ title: 'Dal', path: 'images/eating/meal/dal.png'},				//Button: 119
+		{ title: 'Khichdi', path: 'images/eating/meal/khichdi.png'},		//Button: 120
+		{ title: 'NonVeg', path: 'images/eating/meal/nonveg.png'},			//Button: 121
+		{ title: 'Pizza', path: 'images/eating/meal/pizza.png'},			//Button: 122
+		{ title: 'Rice', path: 'images/eating/meal/rice.png'},				//Button: 123
+		{ title: 'Roti', path: 'images/eating/meal/roti.png'}				//Button: 124
 	]
 	
 	// Fruits buttons
 	var fruitsButtons =[
-		{ title: 'Apple', path: 'images/eating/fruits/apple.png'},					//Button: 136
-		{ title: 'Banana', path: 'images/eating/fruits/banana.png'},				//Button: 137
-		{ title: 'Grapes', path: 'images/eating/fruits/grapes.png'},				//Button: 138
-		{ title: 'Guava', path: 'images/eating/fruits/guava.png'},					//Button: 139
-		{ title: 'Mango', path: 'images/eating/fruits/mango.png'},					//Button: 140
-		{ title: 'Orange', path: 'images/eating/fruits/orange.png'},				//Button: 141
-		{ title: 'Pineapple', path: 'images/eating/fruits/pineapple.png'},			//Button: 142
-		{ title: 'Pomegranate', path: 'images/eating/fruits/pomegranate.png'},		//Button: 143
-		{ title: 'Watermelon', path: 'images/eating/fruits/watermelon.png'}			//Button: 144
+		{ title: 'Apple', path: 'images/eating/fruits/apple.png'},					//Button: 125
+		{ title: 'Banana', path: 'images/eating/fruits/banana.png'},				//Button: 126
+		{ title: 'Grapes', path: 'images/eating/fruits/grapes.png'},				//Button: 127
+		{ title: 'Guava', path: 'images/eating/fruits/guava.png'},					//Button: 128
+		{ title: 'Mango', path: 'images/eating/fruits/mango.png'},					//Button: 129
+		{ title: 'Orange', path: 'images/eating/fruits/orange.png'},				//Button: 130
+		{ title: 'Pineapple', path: 'images/eating/fruits/pineapple.png'},			//Button: 131
+		{ title: 'Pomegranate', path: 'images/eating/fruits/pomegranate.png'},		//Button: 132
+		{ title: 'Watermelon', path: 'images/eating/fruits/watermelon.png'}			//Button: 133
 	]
 	
 	// Fruits buttons
 	var snacksButtons =[
-		{ title: 'Biscuits', path: 'images/eating/snacks/biscuits.png'},			//Button: 145	
-		{ title: 'Chats', path: 'images/eating/snacks/chats.png'},					//Button: 146
-		{ title: 'Chocolate', path: 'images/eating/snacks/chocolate.png'},			//Button: 147
-		{ title: 'IceCream', path: 'images/eating/snacks/icecream.png'},			//Button: 148
-		{ title: 'NonVeg', path: 'images/eating/snacks/nonveg.png'},				//Button: 149
-		{ title: 'Noodles', path: 'images/eating/snacks/noodles.png'},				//Button: 150
-		{ title: 'Pasteries', path: 'images/eating/snacks/pasteries.png'},			//Button: 151
-		{ title: 'Sweets', path: 'images/eating/snacks/sweets.png'},				//Button: 152
-		{ title: 'Wafers', path: 'images/eating/snacks/wafers.png'}					//Button: 153
+		{ title: 'Biscuits', path: 'images/eating/snacks/biscuits.png'},			//Button: 134	
+		{ title: 'Chats', path: 'images/eating/snacks/chats.png'},					//Button: 135
+		{ title: 'Chocolate', path: 'images/eating/snacks/chocolate.png'},			//Button: 136
+		{ title: 'IceCream', path: 'images/eating/snacks/icecream.png'},			//Button: 137
+		{ title: 'NonVeg', path: 'images/eating/snacks/nonveg.png'},				//Button: 138
+		{ title: 'Noodles', path: 'images/eating/snacks/noodles.png'},				//Button: 139
+		{ title: 'Pasteries', path: 'images/eating/snacks/pasteries.png'},			//Button: 140
+		{ title: 'Sweets', path: 'images/eating/snacks/sweets.png'},				//Button: 141
+		{ title: 'Wafers', path: 'images/eating/snacks/wafers.png'}					//Button: 142
 	]
 	
 
 // Play buttons
 var playButtons =[
-	{ title: 'Music', path: 'images/play/music.png'},					//Button: 154
-	{ title: 'OutdoorGames', path: 'images/play/outdoorgames.png'},		//Button: 155
-	{ title: 'Puzzles', path: 'images/play/puzzles.png'},				//Button: 156
-	{ title: 'Toys', path: 'images/play/toys.png'},						//Button: 157
-	{ title: 'TV', path: 'images/play/tv.png'},							//Button: 158
-	{ title: 'VideoGames', path: 'images/play/videogames.png'}			//Button: 159
+	{ title: 'Music', path: 'images/play/music.png'},					//Button: 143
+	{ title: 'OutdoorGames', path: 'images/play/outdoorgames.png'},		//Button: 144
+	{ title: 'Puzzles', path: 'images/play/puzzles.png'},				//Button: 145
+	{ title: 'Toys', path: 'images/play/toys.png'},						//Button: 146
+	{ title: 'TV', path: 'images/play/tv.png'},							//Button: 147
+	{ title: 'VideoGames', path: 'images/play/videogames.png'}			//Button: 148
 ]
 
 	// Music buttons
 	var musicButtons =[
-		{ title: 'ChangeMusic', path: 'images/play/music/changemusic.png'},		//Button: 160
-		{ title: 'LetsDance', path: 'images/play/music/letsdance.png'},			//Button: 161
-		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},			//Button: 162
-		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}		//Button: 163
+		{ title: 'ChangeMusic', path: 'images/play/music/changemusic.png'},		//Button: 149
+		{ title: 'LetsDance', path: 'images/play/music/letsdance.png'},			//Button: 150
+		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},			//Button: 151
+		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}		//Button: 152
 	]
 	
 	// Outdoor-Games buttons
 	var outdoorGamesButtons =[
-		{ title: 'Cars', path: 'images/play/outdoorgames/cars.png'},			//Button: 164
-		{ title: 'Garden', path: 'images/play/outdoorgames/garden.png'},		//Button: 165
-		{ title: 'Swing', path: 'images/play/outdoorgames/swing.png'},			//Button: 166
-		{ title: 'Terrace', path: 'images/play/outdoorgames/terrace.png'},		//Button: 167
-		{ title: 'Walk', path: 'images/play/outdoorgames/walk.png'}				//Button: 168
+		{ title: 'Cars', path: 'images/play/outdoorgames/cars.png'},			//Button: 153
+		{ title: 'Garden', path: 'images/play/outdoorgames/garden.png'},		//Button: 154
+		{ title: 'Swing', path: 'images/play/outdoorgames/swing.png'},			//Button: 155
+		{ title: 'Terrace', path: 'images/play/outdoorgames/terrace.png'},		//Button: 156
+		{ title: 'Walk', path: 'images/play/outdoorgames/walk.png'}				//Button: 157
 	]
 
 	// Toys buttons
 	var toysButtons =[
-		{ title: 'ActionFigures', path: 'images/play/toys/actionfigures.png'},		//Button: 169
-		{ title: 'Cars', path: 'images/play/toys/cars.png'},						//Button: 170
-		{ title: 'PlayWithMe', path: 'images/play/toys/playwithme.png'},			//Button: 171
-		{ title: 'SoftToys', path: 'images/play/toys/softtoys.png'}					//Button: 172
+		{ title: 'Cars', path: 'images/play/toys/cars.png'},						//Button: 158
+		{ title: 'ActionFigures', path: 'images/play/toys/actionfigures.png'},		//Button: 159		
+		{ title: 'PlayWithMe', path: 'images/play/toys/playwithme.png'},			//Button: 160
+		{ title: 'SoftToys', path: 'images/play/toys/softtoys.png'}					//Button: 161
 	]
 	
 	// TV buttons
 	var tvButtons =[
-		{ title: 'NextChannel', path: 'images/play/tv/nextchannel.png'},			//Button: 173
-		{ title: 'PreviousChannel', path: 'images/play/tv/previouschannel.png'},	//Button: 174
-		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},				//Button: 175
-		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}			//Button: 176
+		{ title: 'NextChannel', path: 'images/play/tv/nextchannel.png'},			//Button: 162
+		{ title: 'PreviousChannel', path: 'images/play/tv/previouschannel.png'},	//Button: 163
+		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},				//Button: 164
+		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}			//Button: 165
 	]
 	
 
 // People buttons
 var peopleButtons =[
-	{ title: 'Dad', path: 'images/people/dad.png'},				//Button: 177
-	{ title: 'Mom', path: 'images/people/mom.png'},				//Button: 178
-	{ title: 'Brother', path: 'images/people/brother.png'},		//Button: 179
-	{ title: 'Sister', path: 'images/people/sister.png'},		//Button: 180
-	{ title: 'Friends', path: 'images/people/friends.png'},		//Button: 181
-	{ title: 'Teacher', path: 'images/people/teacher.png'},		//Button: 182
-	{ title: 'Nurse', path: 'images/people/nurse.png'},			//Button: 183
-	{ title: 'Doctor', path: 'images/people/doctor.png'}		//Button: 184
+	{ title: 'Dad', path: 'images/people/dad.png'},				//Button: 166
+	{ title: 'Mom', path: 'images/people/mom.png'},				//Button: 167
+	{ title: 'Brother', path: 'images/people/brother.png'},		//Button: 168
+	{ title: 'Sister', path: 'images/people/sister.png'},		//Button: 169
+	{ title: 'Friends', path: 'images/people/friends.png'},		//Button: 170
+	{ title: 'Teacher', path: 'images/people/teacher.png'},		//Button: 171
+	{ title: 'Nurse', path: 'images/people/nurse.png'},			//Button: 172
+	{ title: 'Doctor', path: 'images/people/doctor.png'}		//Button: 173
 ]
 
 // Others buttons
 var othersButtons =[
-	{ title: 'Clothes', path: 'images/others/clothes.png'},			//Button: 185
-	{ title: 'Emergency', path: 'images/others/emergency.png'},		//Button: 186
-	{ title: 'Hygiene', path: 'images/others/hygiene.png'},			//Button: 187
-	{ title: 'School', path: 'images/others/school.png'},			//Button: 188
-	{ title: 'Sleep', path: 'images/others/sleep.png'},				//Button: 189
-	{ title: 'Time', path: 'images/others/clock.png'}				//Button: 190
+	{ title: 'Clothes', path: 'images/others/clothes.png'},			//Button: 174
+	{ title: 'Emergency', path: 'images/others/emergency.png'},		//Button: 175
+	{ title: 'Hygiene', path: 'images/others/hygiene.png'},			//Button: 176
+	{ title: 'School', path: 'images/others/school.png'},			//Button: 177
+	{ title: 'Sleep', path: 'images/others/sleep.png'},				//Button: 178
+	{ title: 'Time', path: 'images/others/clock.png'}				//Button: 179
 ]
 
 	// Clothes buttons
 	var clothesButtons =[
-		{ title: 'ChangeFootwear', path: 'images/others/clothes/changefootwear.png'}, 		//Button: 191
-		{ title: 'ChangeInnerwear', path: 'images/others/clothes/changeinnerwear.png'},		//Button: 192
-		{ title: 'ChangeJeans', path: 'images/others/clothes/changejeans.png'},				//Button: 193
-		{ title: 'ChangeTShirt', path: 'images/others/clothes/changetshirt.png'},			//Button: 194
-		{ title: 'WearNightClothes', path: 'images/others/clothes/wearnightclothes.png'}	//Button: 195
+		{ title: 'ChangeFootwear', path: 'images/others/clothes/changefootwear.png'}, 		//Button: 180
+		{ title: 'ChangeInnerwear', path: 'images/others/clothes/changeinnerwear.png'},		//Button: 181
+		{ title: 'ChangeJeans', path: 'images/others/clothes/changejeans.png'},				//Button: 182
+		{ title: 'ChangeTShirt', path: 'images/others/clothes/changetshirt.png'},			//Button: 183
+		{ title: 'WearNightClothes', path: 'images/others/clothes/wearnightclothes.png'}	//Button: 184
 	]
 	
 	// Emergency buttons
 	var emergencyButtons =[
-		{ title: 'Bandage', path: 'images/others/emergency/bandage.png'},		//Button: 196
-		{ title: 'Help', path: 'images/others/emergency/help.png'},				//Button: 197
-		{ title: 'Medicine', path: 'images/others/emergency/medicine.png'}		//Button: 198
+		{ title: 'Bandage', path: 'images/others/emergency/bandage.png'},		//Button: 185
+		{ title: 'Help', path: 'images/others/emergency/help.png'},				//Button: 186
+		{ title: 'Medicine', path: 'images/others/emergency/medicine.png'}		//Button: 187
 	]
 	
 	// Hygiene buttons
 	var hygieneButtons =[
-		{ title: 'Bath', path: 'images/others/hygiene/bath.png'},				//Button: 199
-		{ title: 'Brush', path: 'images/others/hygiene/brush.png'},				//Button: 200
-		{ title: 'Facewash', path: 'images/others/hygiene/facewash.png'},		//Button: 201
-		{ title: 'Toilet', path: 'images/others/hygiene/toilet.png'},			//Button: 202
-		{ title: 'Vomit', path: 'images/others/hygiene/vomit.png'}				//Button: 203
+		{ title: 'Bath', path: 'images/others/hygiene/bath.png'},				//Button: 188
+		{ title: 'Brush', path: 'images/others/hygiene/brush.png'},				//Button: 189
+		{ title: 'Facewash', path: 'images/others/hygiene/facewash.png'},		//Button: 190
+		{ title: 'Toilet', path: 'images/others/hygiene/toilet.png'},			//Button: 191
+		{ title: 'Vomit', path: 'images/others/hygiene/vomit.png'}				//Button: 192
 	]
 	
 	// School buttons
 	var schoolButtons =[
-		{ title: 'Bag', path: 'images/others/school/bag.png'},						//Button: 204 
-		{ title: 'Books', path: 'images/others/school/books.png'},					//Button: 205
-		{ title: 'Bottle', path: 'images/others/school/bottle.png'},				//Button: 206
-		{ title: 'DontWantToGo', path: 'images/others/school/dontwanttogo.png'},	//Button: 207
-		{ title: 'HomeWork', path: 'images/others/school/homework.png'}				//Button: 208
+		{ title: 'Bag', path: 'images/others/school/bag.png'},						//Button: 193 
+		{ title: 'Books', path: 'images/others/school/books.png'},					//Button: 194
+		{ title: 'Bottle', path: 'images/others/school/bottle.png'},				//Button: 195
+		{ title: 'DontWantToGo', path: 'images/others/school/dontwanttogo.png'},	//Button: 196
+		{ title: 'HomeWork', path: 'images/others/school/homework.png'}				//Button: 197
 	]
 	
 	// Sleep buttons
 	var sleepButtons =[
-		{ title: 'Door', path: 'images/others/sleep/door.png'},					//Button: 209
-		{ title: 'Fan', path: 'images/others/sleep/fan.png'},					//Button: 210
-		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 211
-		{ title: 'Light', path: 'images/others/sleep/light.png'},				//Button: 212
-		{ title: 'Window', path: 'images/others/sleep/window.png'}				//Button: 213
+		{ title: 'Door', path: 'images/others/sleep/door.png'},					//Button: 198
+		{ title: 'Fan', path: 'images/others/sleep/fan.png'},					//Button: 199
+		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 200
+		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 201
+		{ title: 'Light', path: 'images/others/sleep/light.png'},				//Button: 202
+		{ title: 'Window', path: 'images/others/sleep/window.png'}				//Button: 203
 	]
 	
 	// Time buttons
 	var timeButtons =[
-		{ title: 'Afternoon', path: 'images/others/time/afternoon.png'},		//Button: 214
-		{ title: 'CurrentTime', path: 'images/others/time/currenttime.png'},	//Button: 215
-		{ title: 'Evening', path: 'images/others/time/evening.png'},			//Button: 216
-		{ title: 'Morning', path: 'images/others/time/morning.png'},			//Button: 217
-		{ title: 'Night', path: 'images/others/time/night.png'},				//Button: 218
-		{ title: 'Tomorrow', path: 'images/others/time/tomorrow.png'},			//Button: 219
-		{ title: 'Yesterday', path: 'images/others/time/yesterday.png'}			//Button: 220
+		{ title: 'Afternoon', path: 'images/others/time/afternoon.png'},		//Button: 204
+		{ title: 'CurrentTime', path: 'images/others/time/currenttime.png'},	//Button: 205
+		{ title: 'Evening', path: 'images/others/time/evening.png'},			//Button: 206
+		{ title: 'Morning', path: 'images/others/time/morning.png'},			//Button: 207
+		{ title: 'Night', path: 'images/others/time/night.png'},				//Button: 208
+		{ title: 'Tomorrow', path: 'images/others/time/tomorrow.png'},			//Button: 209
+		{ title: 'Yesterday', path: 'images/others/time/yesterday.png'}			//Button: 210
 	]
 
 //Create buttons	
@@ -758,18 +759,6 @@ win.addEventListener('click', function(e){
 			case 'Snacks':
 				setButtonState(e, 92, othersButtons);
 				break;
-	
-	var addOnsButtons =[
-		{ title: 'Butter', path: 'images/eating/addons/butter.png'},	//Button: 93
-		{ title: 'Jam', path: 'images/eating/addons/jam.png'},			//Button: 94
-		{ title: 'Masala', path: 'images/eating/addons/masala.png'},	//Button: 95
-		{ title: 'Pepper', path: 'images/eating/addons/pepper.png'},	//Button: 96
-		{ title: 'Pickle', path: 'images/eating/addons/pickle.png'},	//Button: 97
-		{ title: 'Salt', path: 'images/eating/addons/salt.png'},		//Button: 98
-		{ title: 'Sauce', path: 'images/eating/addons/sauce.png'},		//Button: 99
-		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'}		//Button: 100
-	]
-	
 				
 			//AddOns
 			case 'Butter':
@@ -804,6 +793,469 @@ win.addEventListener('click', function(e){
 				setButtonState(e, 100, othersButtons);
 				break;
 				
+			//Beverages
+			case 'Juice':
+				setButtonState(e, 101, othersButtons);
+				break;
+			
+			case 'Milk':
+				setButtonState(e, 102, othersButtons);
+				break;
+			
+			case 'Milkshake':
+				setButtonState(e, 103, othersButtons);
+				break;
+			
+			case 'Tea':
+				setButtonState(e, 104, othersButtons);
+				break;
+	
+			//Breakfast
+			case 'Bread':
+				setButtonState(e, 105, othersButtons);
+				break;
+			
+			case 'Cornflakes':
+				setButtonState(e, 106, othersButtons);
+				break;
+			
+			case 'Eggs':
+				setButtonState(e, 107, othersButtons);
+				break;
+			
+			case 'Milk':
+				setButtonState(e, 108, othersButtons);
+				break;
+			
+			case 'Porridge':
+				setButtonState(e, 109, othersButtons);
+				break;
+			
+			case 'Rice':
+				setButtonState(e, 110, othersButtons);
+				break;
+				
+			//Cutlery
+			case 'Bowl':
+				setButtonState(e, 111, othersButtons);
+				break;
+			
+			case 'Fork':
+				setButtonState(e, 112, othersButtons);
+				break;
+			
+			case 'Glass':
+				setButtonState(e, 113, othersButtons);
+				break;
+			
+			case 'Knife':
+				setButtonState(e, 114, othersButtons);
+				break;
+			
+			case 'Plate':
+				setButtonState(e, 115, othersButtons);
+				break;
+			
+			case 'Spoon':
+				setButtonState(e, 116, othersButtons);
+				break;
+	
+			//Dinner, Lunch: Meal
+			case 'Curd':
+				setButtonState(e, 117, othersButtons);
+				break;
+			
+			case 'Curry':
+				setButtonState(e, 118, othersButtons);
+				break;
+			
+			case 'Dal':
+				setButtonState(e, 119, othersButtons);
+				break;
+			
+			case 'Khichdi':
+				setButtonState(e, 120, othersButtons);
+				break;
+			
+			case 'NonVeg':
+				setButtonState(e, 121, othersButtons);
+				break;
+			
+			case 'Pizza':
+				setButtonState(e, 122, othersButtons);
+				break;
+			
+			case 'Rice':
+				setButtonState(e, 123, othersButtons);
+				break;
+			
+			case 'Roti':
+				setButtonState(e, 124, othersButtons);
+				break;
+				
+			//Fruit
+			case 'Apple':
+				setButtonState(e, 125, othersButtons);
+				break;
+			
+			case 'Banana':
+				setButtonState(e, 126, othersButtons);
+				break;
+			
+			case 'Grapes':
+				setButtonState(e, 127, othersButtons);
+				break;
+			
+			case 'Guava':
+				setButtonState(e, 128, othersButtons);
+				break;
+			
+			case 'Mango':
+				setButtonState(e, 129, othersButtons);
+				break;
+			
+			case 'Orange':
+				setButtonState(e, 130, othersButtons);
+				break;
+			
+			case 'Pineapple':
+				setButtonState(e, 131, othersButtons);
+				break;
+			
+			case 'Pomegranate':
+				setButtonState(e, 132, othersButtons);
+				break;
+			
+			case 'Watermelon':
+				setButtonState(e, 133, othersButtons);
+				break;
+			
+			//Lunch menu is same as dinner: check one set up
+		
+			//Fruit
+			case 'Biscuits':
+				setButtonState(e, 134, othersButtons);
+				break;
+			
+			case 'Chats':
+				setButtonState(e, 135, othersButtons);
+				break;
+			
+			case 'Chocolate':
+				setButtonState(e, 136, othersButtons);
+				break;
+			
+			case 'IceCream':
+				setButtonState(e, 137, othersButtons);
+				break;
+			
+			case 'NonVeg':
+				setButtonState(e, 138, othersButtons);
+				break;
+			
+			case 'Noodles':
+				setButtonState(e, 139, othersButtons);
+				break;
+			
+			case 'Pasteries':
+				setButtonState(e, 140, othersButtons);
+				break;
+			
+			case 'Sweets':
+				setButtonState(e, 141, othersButtons);
+				break;
+			
+			case 'Wafers':
+				setButtonState(e, 142, othersButtons);
+				break;
+
+		//Play
+			case 'Music':
+				setButtonState(e, 143, othersButtons);
+				break;
+			
+			case 'OutdoorGames':
+				setButtonState(e, 144, othersButtons);
+				break;
+			
+			case 'Puzzles':
+				setButtonState(e, 145, othersButtons);
+				break;
+			
+			case 'Toys':
+				setButtonState(e, 146, othersButtons);
+				break;
+			
+			case 'TV':
+				setButtonState(e, 147, othersButtons);
+				break;
+			
+			case 'VideoGames':
+				setButtonState(e, 148, othersButtons);
+				break;
+
+			//Music
+			case 'ChangeMusic':
+				setButtonState(e, 149, othersButtons);
+				break;
+			
+			case 'LetsDance':
+				setButtonState(e, 150, othersButtons);
+				break;
+			
+			case 'VolumeUp':
+				setButtonState(e, 151, othersButtons);
+				break;
+			
+			case 'VolumeDown':
+				setButtonState(e, 152, othersButtons);
+				break;
+			
+			//Outdoor Games
+			case 'Cars':
+				setButtonState(e, 153, othersButtons);
+				break;
+			
+			case 'Garden':
+				setButtonState(e, 154, othersButtons);
+				break;
+			
+			case 'Swing':
+				setButtonState(e, 155, othersButtons);
+				break;
+			
+			case 'Terrace':
+				setButtonState(e, 156, othersButtons);
+				break;
+			
+			case 'Walk':
+				setButtonState(e, 157, othersButtons);
+				break;
+			
+			//Toys
+			case 'Cars':
+				setButtonState(e, 158, othersButtons);
+				break;
+			
+			case 'ActionFigures':
+				setButtonState(e, 159, othersButtons);
+				break;
+			
+			case 'PlayWithMe':
+				setButtonState(e, 160, othersButtons);
+				break;
+			
+			case 'SoftToys':
+				setButtonState(e, 161, othersButtons);
+				break;
+
+			//TV
+			case 'NextChannel':
+				setButtonState(e, 162, othersButtons);
+				break;
+			
+			case 'PreviousChannel':
+				setButtonState(e, 163, othersButtons);
+				break;
+			
+			case 'VolumeUp':
+				setButtonState(e, 164, othersButtons);
+				break;
+			
+			case 'VolumeDown':
+				setButtonState(e, 165, othersButtons);
+				break;
+				
+			//Video Games
+
+			//People
+			case 'Dad':
+				setButtonState(e, 166, othersButtons);
+				break;
+			
+			case 'Mom':
+				setButtonState(e, 167, othersButtons);
+				break;
+			
+			case 'Brother':
+				setButtonState(e, 168, othersButtons);
+				break;
+			
+			case 'Sister':
+				setButtonState(e, 169, othersButtons);
+				break;
+			
+			case 'Friends':
+				setButtonState(e, 170, othersButtons);
+				break;
+			
+			case 'Teacher':
+				setButtonState(e, 171, othersButtons);
+				break;
+			
+			case 'Nurse':
+				setButtonState(e, 172, othersButtons);
+				break;
+			
+			case 'Doctor':
+				setButtonState(e, 173, othersButtons);
+				break;
+
+		//Others Button
+			case 'Clothes':
+				setButtonState(e, 174, othersButtons);
+				break;
+			
+			case 'Emergency':
+				setButtonState(e, 175, othersButtons);
+				break;
+			
+			case 'Hygiene':
+				setButtonState(e, 176, othersButtons);
+				break;
+			
+			case 'School':
+				setButtonState(e, 177, othersButtons);
+				break;
+			
+			case 'Sleep':
+				setButtonState(e, 178, othersButtons);
+				break;
+			
+			case 'Time':
+				setButtonState(e, 179, othersButtons);
+				break;
+
+			//Clothes
+			case 'ChangeFootwear':
+				setButtonState(e, 180, othersButtons);
+				break;
+			
+			case 'ChangeInnerwear':
+				setButtonState(e, 181, othersButtons);
+				break;
+			
+			case 'ChangeJeans':
+				setButtonState(e, 182, othersButtons);
+				break;
+			
+			case 'ChangeTShirt':
+				setButtonState(e, 183, othersButtons);
+				break;
+			
+			case 'WearNightClothes':
+				setButtonState(e, 184, othersButtons);
+				break;
+			
+			//Emergency
+			case 'Bandage':
+				setButtonState(e, 185, othersButtons);
+				break;
+			
+			case 'Help':
+				setButtonState(e, 186, othersButtons);
+				break;
+			
+			case 'Medicine':
+				setButtonState(e, 187, othersButtons);
+				break;
+			
+			//Hygiene
+			case 'Bath':
+				setButtonState(e, 188, othersButtons);
+				break;
+			
+			case 'Brush':
+				setButtonState(e, 189, othersButtons);
+				break;
+			
+			case 'Facewash':
+				setButtonState(e, 190, othersButtons);
+				break;
+			
+			case 'Toilet':
+				setButtonState(e, 191, othersButtons);
+				break;
+			
+			case 'Vomit':
+				setButtonState(e, 192, othersButtons);
+				break;
+			
+			//School
+			case 'Bag':
+				setButtonState(e, 193, othersButtons);
+				break;
+			
+			case 'Books':
+				setButtonState(e, 194, othersButtons);
+				break;
+			
+			case 'Bottle':
+				setButtonState(e, 195, othersButtons);
+				break;
+			
+			case 'DontWantToGo':
+				setButtonState(e, 196, othersButtons);
+				break;
+			
+			case 'HomeWork':
+				setButtonState(e, 197, othersButtons);
+				break;
+			
+			//Sleep
+			case 'Door':
+				setButtonState(e, 198, othersButtons);
+				break;
+			
+			case 'Fan':
+				setButtonState(e, 199, othersButtons);
+				break;
+			
+			case 'FeelingCold':
+				setButtonState(e, 200, othersButtons);
+				break;
+			
+			case 'FeelingWarm':
+				setButtonState(e, 201, othersButtons);
+				break;
+			
+			case 'Light':
+				setButtonState(e, 202, othersButtons);
+				break;
+			
+			case 'Window':
+				setButtonState(e, 203, othersButtons);
+				break;
+			
+			//Time
+			case 'Afternoon':
+				setButtonState(e, 204, othersButtons);
+				break;
+			
+			case 'CurrentTime':
+				setButtonState(e, 205, othersButtons);
+				break;
+			
+			case 'Evening':
+				setButtonState(e, 206, othersButtons);
+				break;
+			
+			case 'Morning':
+				setButtonState(e, 207, othersButtons);
+				break;
+			
+			case 'Night':
+				setButtonState(e, 208, othersButtons);
+				break;
+			
+			case 'Tomorrow':
+				setButtonState(e, 209, othersButtons);
+				break;
+			
+			case 'Yesterday':
+				setButtonState(e, 210, othersButtons);
+				break;
+			
 			default:
 				//do nothing
 		}

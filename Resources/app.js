@@ -726,8 +726,7 @@ win.addEventListener('click', function(e){
 				setButtonState(e, 84, othersButtons);
 				break;
 			
-		//Eating
-			//AddOns
+		//Eating Buttons
 			case 'AddOns':
 				setButtonState(e, 85, othersButtons);
 				break;
@@ -758,6 +757,51 @@ win.addEventListener('click', function(e){
 			
 			case 'Snacks':
 				setButtonState(e, 92, othersButtons);
+				break;
+	
+	var addOnsButtons =[
+		{ title: 'Butter', path: 'images/eating/addons/butter.png'},	//Button: 93
+		{ title: 'Jam', path: 'images/eating/addons/jam.png'},			//Button: 94
+		{ title: 'Masala', path: 'images/eating/addons/masala.png'},	//Button: 95
+		{ title: 'Pepper', path: 'images/eating/addons/pepper.png'},	//Button: 96
+		{ title: 'Pickle', path: 'images/eating/addons/pickle.png'},	//Button: 97
+		{ title: 'Salt', path: 'images/eating/addons/salt.png'},		//Button: 98
+		{ title: 'Sauce', path: 'images/eating/addons/sauce.png'},		//Button: 99
+		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'}		//Button: 100
+	]
+	
+				
+			//AddOns
+			case 'Butter':
+				setButtonState(e, 93, othersButtons);
+				break;
+			
+			case 'Jam':
+				setButtonState(e, 94, othersButtons);
+				break;
+			
+			case 'Masala':
+				setButtonState(e, 95, othersButtons);
+				break;
+			
+			case 'Pepper':
+				setButtonState(e, 96, othersButtons);
+				break;
+			
+			case 'Pickle':
+				setButtonState(e, 97, othersButtons);
+				break;
+			
+			case 'Salt':
+				setButtonState(e, 98, othersButtons);
+				break;
+			
+			case 'Sauce':
+				setButtonState(e, 99, othersButtons);
+				break;
+			
+			case 'Sugar':
+				setButtonState(e, 100, othersButtons);
 				break;
 				
 			default:

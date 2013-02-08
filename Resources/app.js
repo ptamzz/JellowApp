@@ -1383,6 +1383,153 @@ win.addEventListener('click', function(e){
 		} else if (actionButtonState == 36){
 			//If 'Mosquito'
 			soundPath('media/learning/animals/mosquito.mp3');
+		} else if (actionButtonState == 37){
+			//If 'Ears'
+			soundPath('media/learning/body/ears.mp3');
+		} else if (actionButtonState == 38){
+			//If 'Eyes'
+			soundPath('media/learning/body/eyes.mp3');
+		} else if (actionButtonState == 39){
+			//If 'Fingers'
+			soundPath('media/learning/body/fingers.mp3');
+		} else if (actionButtonState == 40){
+			//If 'Hair'
+			soundPath('media/learning/body/hair.mp3');
+		} else if (actionButtonState == 41){
+			//If 'Hand'
+			soundPath('media/learning/body/hands.mp3');
+		} else if (actionButtonState == 42){
+			//If 'Head'
+			soundPath('media/learning/body/head.mp3');
+		} else if (actionButtonState == 43){
+			//If 'Legs'
+			soundPath('media/learning/body/legs.mp3');
+		} else if (actionButtonState == 44){
+			//If 'Mouth'
+			soundPath('media/learning/body/mouth.mp3');
+		} else if (actionButtonState == 45){
+			//If 'Stomach'
+			soundPath('media/learning/body/stomach.mp3');
+		} else if (actionButtonState == 46){
+			//If 'BedTimeStories'
+			soundPath('media/learning/books/BedTimeStories.mp3');
+		} else if (actionButtonState == 47){
+			//If 'Comics'
+			soundPath('media/learning/books/Comics.mp3');
+		} else if (actionButtonState == 48){
+			//If 'DrawingBook'
+			soundPath('media/learning/books/DrawingBook.mp3');
+		} else if (actionButtonState == 49){
+			//If 'Maths'
+			soundPath('media/learning/books/Maths.mp3');
+		} else if (actionButtonState == 50){
+			//If 'RhymesBook'
+			soundPath('media/learning/books/RhymesBook.mp3');
+		} else if (actionButtonState == 51){
+			//If 'SchoolNotebook'
+			soundPath('media/learning/books/SchoolNotebook.mp3');
+		} else if (actionButtonState == 52){
+			//If 'Words'
+			soundPath('media/learning/books/Words.mp3');
+		
+		} else if (actionButtonState == 53){
+			//If 'Black'
+			soundPath('media/learning/colors/Black.mp3');
+		} else if (actionButtonState == 54){
+			//If 'Blue'
+			soundPath('media/learning/colors/Blue.mp3');
+		} else if (actionButtonState == 55){
+			//If 'Brown'
+			soundPath('media/learning/colors/Brown.mp3');
+		} else if (actionButtonState == 56){
+			//If 'Golden'
+			soundPath('media/learning/colors/Golden.mp3');
+		} else if (actionButtonState == 57){
+			//If 'Green'
+			soundPath('media/learning/colors/Green.mp3');
+		} else if (actionButtonState == 58){
+			//If 'Red'
+			soundPath('media/learning/colors/Red.mp3');
+		} else if (actionButtonState == 59){
+			//If 'Silver'
+			soundPath('media/learning/colors/Silver.mp3');
+		} else if (actionButtonState == 60){
+			//If 'White'
+			soundPath('media/learning/colors/White.mp3');
+		} else if (actionButtonState == 61){
+			//If 'Yellow'
+			soundPath('media/learning/colors/Yellow.mp3');
+		} else if (actionButtonState == 62){
+			//If 'Chair'
+			soundPath('media/learning/homeobjects/Chair.mp3');
+		} else if (actionButtonState == 63){
+			//If 'Door'
+			soundPath('media/learning/homeobjects/Door.mp3');
+		} else if (actionButtonState == 64){
+			//If 'Fan'
+			soundPath('media/learning/homeobjects/Fan.mp3');
+		} else if (actionButtonState == 65){
+			//If 'Kitchen'
+			soundPath('media/learning/homeobjects/Kitchen.mp3');
+		} else if (actionButtonState == 66){
+			//If 'Sofa'
+			soundPath('media/learning/homeobjects/Sofa.mp3');
+		} else if (actionButtonState == 67){
+			//If 'Table'
+			soundPath('media/learning/homeobjects/Table.mp3');
+		} else if (actionButtonState == 68){
+			//If 'Toilet'
+			soundPath('media/learning/homeobjects/Toilet.mp3');
+		} else if (actionButtonState == 69){
+			//If 'Window'
+			soundPath('media/learning/homeobjects/Window.mp3');
+		} else if (actionButtonState == 70){
+			//If 'Circle'
+			soundPath('media/learning/shapes/Circle.mp3');
+		} else if (actionButtonState == 71){
+			//If 'FreeForm'
+			soundPath('media/learning/shapes/FreeForm.mp3');
+		} else if (actionButtonState == 72){
+			//If 'Line'
+			soundPath('media/learning/shapes/Line.mp3');
+		} else if (actionButtonState == 73){
+			//If 'Rectangle'
+			soundPath('media/learning/shapes/Rectangle.mp3');
+		} else if (actionButtonState == 74){
+			//If 'Square'
+			soundPath('media/learning/shapes/Square.mp3');
+		} else if (actionButtonState == 75){
+			//If 'Triangle'
+			soundPath('media/learning/shapes/Triangle.mp3');
+		
+		
+		} else if (actionButtonState == 76){
+			//If 'BlankPaper'
+			soundPath('media/learning/stationery/BlankPaper.mp3');
+		} else if (actionButtonState == 77){
+			//If 'ColoredPaper'
+			soundPath('media/learning/stationery/ColoredPaper.mp3');
+		} else if (actionButtonState == 78){
+			//If 'Crayons'
+			soundPath('media/learning/stationery/Crayons.mp3');
+		} else if (actionButtonState == 79){
+			//If 'Eraser'
+			soundPath('media/learning/stationery/Eraser.mp3');
+		} else if (actionButtonState == 80){
+			//If 'Pen'
+			soundPath('media/learning/stationery/Pen.mp3');
+		} else if (actionButtonState == 81){
+			//If 'Pencil'
+			soundPath('media/learning/stationery/Pencil.mp3');
+		} else if (actionButtonState == 82){
+			//If 'Pouch'
+			soundPath('media/learning/stationery/Pouch.mp3');
+		} else if (actionButtonState == 83){
+			//If 'Scale'
+			soundPath('media/learning/stationery/Scale.mp3');
+		} else if (actionButtonState == 84){
+			//If 'Sharpener'
+			soundPath('media/learning/stationery/Sharpener.mp3');
 		}
 	}
 	

@@ -1501,8 +1501,6 @@ win.addEventListener('click', function(e){
 		} else if (actionButtonState == 75){
 			//If 'Triangle'
 			soundPath('media/learning/shapes/Triangle.mp3');
-		
-		
 		} else if (actionButtonState == 76){
 			//If 'BlankPaper'
 			soundPath('media/learning/stationery/BlankPaper.mp3');
@@ -1530,6 +1528,84 @@ win.addEventListener('click', function(e){
 		} else if (actionButtonState == 84){
 			//If 'Sharpener'
 			soundPath('media/learning/stationery/Sharpener.mp3');
+		} else if (actionButtonState == 85){
+			//If 'AddOns'
+			soundPath('media/learning/stationery/AddOn.mp3');
+		} else if (actionButtonState == 86){
+			//If 'Beverages'
+			soundPath('media/learning/stationery/Beverage.mp3');
+		} else if (actionButtonState == 87){
+			//If 'Breakfast'
+			soundPath('media/learning/stationery/Breakfast.mp3');
+		} else if (actionButtonState == 88){
+			//If 'Cutlery'
+			soundPath('media/learning/stationery/Cutlery.mp3');
+		} else if (actionButtonState == 89){
+			//If 'Dinner'
+			soundPath('media/learning/stationery/Dinner.mp3');
+		} else if (actionButtonState == 90){
+			//If 'Fruit'
+			soundPath('media/learning/stationery/Fruit.mp3');
+		} else if (actionButtonState == 91){
+			//If 'Lunch'
+			soundPath('media/learning/stationery/Lunch.mp3');
+		} else if (actionButtonState == 92){
+			//If 'Snacks'
+			soundPath('media/learning/stationery/Snack.mp3');
+		} else if (actionButtonState == 93){
+			//If 'Butter'
+			soundPath('media/learning/addon/Butter.mp3');
+		} else if (actionButtonState == 94){
+			//If 'Jam'
+			soundPath('media/learning/addon/Jam.mp3');
+		} else if (actionButtonState == 95){
+			//If 'Masala'
+			soundPath('media/learning/addon/Masala.mp3');
+		} else if (actionButtonState == 96){
+			//If 'Pepper'
+			soundPath('media/learning/addon/Pepper.mp3');
+		} else if (actionButtonState == 97){
+			//If 'Pickle'
+			soundPath('media/learning/addon/Pickle.mp3');
+		} else if (actionButtonState == 98){
+			//If 'Salt'
+			soundPath('media/learning/addon/Salt.mp3');
+		} else if (actionButtonState == 99){
+			//If 'Sauce'
+			soundPath('media/learning/addon/Sauce.mp3');
+		} else if (actionButtonState == 100){
+			//If 'Sugar'
+			soundPath('media/learning/addon/Sugar.mp3');
+		} else if (actionButtonState == 101){
+			//If 'Juice'
+			soundPath('media/learning/beverage/Juice.mp3');
+		} else if (actionButtonState == 102){
+			//If 'Milk'
+			soundPath('media/learning/beverage/Milk.mp3');
+		} else if (actionButtonState == 103){
+			//If 'Milkshake'
+			soundPath('media/learning/beverage/MilkShakes.mp3');
+		} else if (actionButtonState == 104){
+			//If 'Tea'
+			soundPath('media/learning/beverage/Tea.mp3');
+		} else if (actionButtonState == 105){
+			//If 'Bread'
+			soundPath('media/learning/breakfast/Bread.mp3');
+		} else if (actionButtonState == 106){
+			//If 'Cornflakes'
+			soundPath('media/learning/breakfast/Cornflakes.mp3');
+		} else if (actionButtonState == 107){
+			//If 'Eggs'
+			soundPath('media/learning/breakfast/Eggs.mp3');
+		} else if (actionButtonState == 108){
+			//If 'Milk'
+			soundPath('media/learning/breakfast/Milk.mp3');
+		} else if (actionButtonState == 109){
+			//If 'Porridge'
+			soundPath('media/learning/breakfast/Porridge.mp3');
+		} else if (actionButtonState == 110){
+			//If 'Rice'
+			soundPath('media/learning/breakfast/Rice.mp3');
 		}
 	}
 	

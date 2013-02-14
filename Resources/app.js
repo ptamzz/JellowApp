@@ -19,8 +19,6 @@ var win = Titanium.UI.createWindow({
 var mainHolder = Titanium.UI.createView({
 	width:'auto',
 	height: 'auto',
-	//backgroundColor: '#2f453e', //'#7A993D'
-	//zIndex: 10
 });
 	
 //ScrollView
@@ -33,7 +31,6 @@ var scrollView = Titanium.UI.createScrollView({
 	zIndex: 1,
 	showVerticalScrollIndicator:true, 
 	showHorizontalScrollIndicator:true,
-	//backgroundColor: '#333'
 });
 
 //Scrolling buttons at the center

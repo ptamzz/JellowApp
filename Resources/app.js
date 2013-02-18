@@ -1714,7 +1714,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1732,7 +1732,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1768,7 +1768,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1786,7 +1786,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1804,7 +1804,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1822,7 +1822,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path 
 				})
 				
 				action.play();
@@ -1840,7 +1840,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path //'media/home/learning.mp3'
+					url: path /
 				})
 				
 				action.play();
@@ -1852,7 +1852,7 @@ function soundPath(path){
 
 	} else if (mainButtonState == null){
 		var audio = Ti.Media.createSound({
-			url: path //'media/home/learning.mp3'
+			url: path 
 		})
 		audio.play(); //Play Audio
 	}

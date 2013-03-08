@@ -1,4 +1,6 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
+// Github Push
+
 Titanium.UI.setBackgroundColor('#000');
 
 var mainButtonState = null;
@@ -1840,7 +1842,7 @@ function soundPath(path){
 		
 		audio.addEventListener('complete', function(e){
 				var action = Ti.Media.createSound({
-					url: path /
+					url: path 
 				})
 				
 				action.play();
@@ -1895,6 +1897,7 @@ function setButtonState(button, buttonNo, nextLevelButtons){
 		inside = false;
 	}
 }
+
 
 function setMainBtnState(e, firstBtnState, secBtnState){
 	if(e.source.value == 1){

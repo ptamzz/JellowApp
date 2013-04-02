@@ -4,8 +4,8 @@
 Titanium.UI.setBackgroundColor('#000');
 
 var mainButtonState = null;
-var actionButtonState = null;
-var temp = 1;
+var actionButtonState = null;	//Which action button is currently active
+var temp = 1;		//Variable use to identity the current state of a button
 var audio;
 var mainBtn = [], btn = [];
 
@@ -23,25 +23,40 @@ var mainHolder = Titanium.UI.createView({
 	width:'auto',
 	height: 'auto',
 });
+
+var mainHolderLeft = Titanium.UI.createView({
+	width: 110,
+	height: 'auto',
+	zIndex: 1,
+	left: 0
+});
+
+var mainHolderRight = Ti.UI.createView({
+	width: 110,
+	height: 'auto',
+	zIndex: 1,
+	right: 0
+});
 	
 //ScrollView
 var scrollView = Titanium.UI.createScrollView({ 
-	width: 110,
+	width: 640,
 	contentWidth: 110, 
 	contentHeight: 'auto',
 	top:0,
-	left: 110,
-	zIndex: 1,
+	left: 0,
+	backgroundColor: '#CCC',
 	showVerticalScrollIndicator:true, 
 	showHorizontalScrollIndicator:true,
 });
 
 //Scrolling buttons at the center
 var centerButtons = Ti.UI.createView({ 
-	width: 110,
-	height: 'auto',
-	top:10 
-});
+		width: 110,
+		height: 'auto',
+		left: 110,
+		top:10 
+	});
 
 
 /* Main Buttons' array */
@@ -56,41 +71,6 @@ var mainButtons = [
 
 createMainButtons(mainButtons);
 
-function createMainButtons(data){
-	/* Generate Main Buttons */
-	for (var i = 0; i < data.length; i++){
-		
-		//Set button margin as per its position: left or right
-		if (i%2 == 0){
-			marginLeft = 20;
-			marginTop = 40+70*i;
-		} else {
-			marginLeft = 235;
-		}
-		
-		//Creating each button
-		mainBtn[i]  = Titanium.UI.createImageView({
-			_id: i,
-			image:  data[i].path,
-			left: marginLeft,
-			height: 70,
-			width: 70,
-			top: marginTop,
-			title: data[i].title,
-			type: 'main',
-			value: 1
-		});
-		
-		//Changing state for main Buttons (separated from action buttons as Main buttons have 3 states while action buttons have 2)
-		mainBtn[i].addEventListener('click',changeMainBtnState);
-		
-		//Adding each button
-		mainHolder.add(mainBtn[i]);
-		
-	}
-}
-
-
 // Home buttons
 var homeButtons =[
 	{ title: 'Learning', path: 'images/home/learning.png'},		//Button: 19		
@@ -98,6 +78,7 @@ var homeButtons =[
 	{ title: 'Play', path: 'images/home/playing.png'},			//Button: 21
 	{ title: 'People', path: 'images/home/people.png'},			//Button: 22
 	{ title: 'Other', path: 'images/home/others.png'}			//Button: 23
+//	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 // Learning buttons
@@ -108,7 +89,8 @@ var learningButtons =[
 	{ title: 'Colors', path: 'images/learning/colors.png'},				//Button: 27
 	{ title: 'HomeObjects', path: 'images/learning/homeobjects.png'},	//Button: 28
 	{ title: 'Shapes', path: 'images/learning/shapes.png'},				//Button: 29
-	{ title: 'Stationery', path: 'images/learning/stationary.png'}		//Button: 30
+	{ title: 'Stationery', path: 'images/learning/stationary.png'},		//Button: 30
+	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 	// Animals buttons
@@ -118,7 +100,8 @@ var learningButtons =[
 		{ title: 'Cockroach', path: 'images/learning/animals/cockroach.png'},	//Button: 33
 		{ title: 'Dog', path: 'images/learning/animals/dog.png'},				//Button: 34
 		{ title: 'Fly', path: 'images/learning/animals/fly.png'},				//Button: 35
-		{ title: 'Mosquito', path: 'images/learning/animals/mosquito.png'}		//Button: 36
+		{ title: 'Mosquito', path: 'images/learning/animals/mosquito.png'},		//Button: 36
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Body buttons
@@ -131,7 +114,8 @@ var learningButtons =[
 		{ title: 'Head', path: 'images/learning/body/head.png'},			//Button: 42
 		{ title: 'Legs', path: 'images/learning/body/legs.png'},			//Button: 43
 		{ title: 'Mouth', path: 'images/learning/body/mouth.png'},			//Button: 44
-		{ title: 'Stomach', path: 'images/learning/body/stomach.png'}		//Button: 45
+		{ title: 'Stomach', path: 'images/learning/body/stomach.png'},		//Button: 45
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Books buttons
@@ -142,7 +126,8 @@ var learningButtons =[
 		{ title: 'Maths', path: 'images/learning/books/maths.png'},						//Button: 49
 		{ title: 'RhymesBook', path: 'images/learning/books/rhymes.png'},				//Button: 50
 		{ title: 'SchoolNotebook', path: 'images/learning/books/schoolnotebook.png'},	//Button: 51
-		{ title: 'Words', path: 'images/learning/books/words.png'}						//Button: 52
+		{ title: 'Words', path: 'images/learning/books/words.png'},						//Button: 52
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Colors buttons
@@ -155,7 +140,8 @@ var learningButtons =[
 		{ title: 'Red', path: 'images/learning/colors/red.png'},			//Button: 58
 		{ title: 'Silver', path: 'images/learning/colors/silver.png'},		//Button: 59
 		{ title: 'White', path: 'images/learning/colors/white.png'},		//Button: 60
-		{ title: 'Yellow', path: 'images/learning/colors/yellow.png'}		//Button: 61
+		{ title: 'Yellow', path: 'images/learning/colors/yellow.png'},		//Button: 61
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Home-Object buttons
@@ -167,7 +153,8 @@ var learningButtons =[
 		{ title: 'Sofa', path: 'images/learning/homeobjects/sofa.png'},			//Button: 66
 		{ title: 'Table', path: 'images/learning/homeobjects/table.png'},		//Button: 67
 		{ title: 'Toilet', path: 'images/learning/homeobjects/toilet.png'},		//Button: 68
-		{ title: 'Window', path: 'images/learning/homeobjects/window.png'}		//Button: 69
+		{ title: 'Window', path: 'images/learning/homeobjects/window.png'},		//Button: 69
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Shapes buttons
@@ -177,7 +164,8 @@ var learningButtons =[
 		{ title: 'Line', path: 'images/learning/shapes/line.png'},				//Button: 72
 		{ title: 'Rectangle', path: 'images/learning/shapes/rectangle.png'},	//Button: 73
 		{ title: 'Square', path: 'images/learning/shapes/square.png'},			//Button: 74
-		{ title: 'Triangle', path: 'images/learning/shapes/triangle.png'}		//Button: 75
+		{ title: 'Triangle', path: 'images/learning/shapes/triangle.png'},		//Button: 75
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Stationary buttons
@@ -190,7 +178,8 @@ var learningButtons =[
 		{ title: 'Pencil', path: 'images/learning/stationary/pencil.png'},				//Button: 81
 		{ title: 'Pouch', path: 'images/learning/stationary/pouch.png'},				//Button: 82
 		{ title: 'Scale', path: 'images/learning/stationary/scale.png'},				//Button: 83
-		{ title: 'Sharpener', path: 'images/learning/stationary/sharpener.png'}			//Button: 84
+		{ title: 'Sharpener', path: 'images/learning/stationary/sharpener.png'},			//Button: 84
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	
@@ -203,7 +192,8 @@ var eatingButtons =[
 	{ title: 'Dinner', path: 'images/eating/dinner.png'},			//Button: 89
 	{ title: 'Fruit', path: 'images/eating/fruits.png'},			//Button: 90
 	{ title: 'Lunch', path: 'images/eating/lunch.png'},				//Button: 91
-	{ title: 'Snacks', path: 'images/eating/snacks.png'}			//Button: 92
+	{ title: 'Snacks', path: 'images/eating/snacks.png'},			//Button: 92
+	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 	// Add-Ons buttons
@@ -215,7 +205,8 @@ var eatingButtons =[
 		{ title: 'Pickle', path: 'images/eating/addons/pickle.png'},	//Button: 97
 		{ title: 'Salt', path: 'images/eating/addons/salt.png'},		//Button: 98
 		{ title: 'Sauce', path: 'images/eating/addons/sauce.png'},		//Button: 99
-		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'}		//Button: 100
+		{ title: 'Sugar', path: 'images/eating/addons/sugar.png'},		//Button: 100
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Beverages buttons
@@ -223,7 +214,8 @@ var eatingButtons =[
 		{ title: 'Juice', path: 'images/eating/beverages/juice.png'},			//Button: 101
 		{ title: 'Milk', path: 'images/eating/beverages/milk.png'},				//Button: 102
 		{ title: 'Milkshake', path: 'images/eating/beverages/milkshake.png'},	//Button: 103
-		{ title: 'Tea', path: 'images/eating/beverages/tea.png'}				//Button: 104
+		{ title: 'Tea', path: 'images/eating/beverages/tea.png'},				//Button: 104
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Breakfast buttons
@@ -233,7 +225,8 @@ var eatingButtons =[
 		{ title: 'Eggs', path: 'images/eating/breakfast/eggs.png'},					//Button: 107
 		{ title: 'Milk', path: 'images/eating/breakfast/milk.png'},					//Button: 108
 		{ title: 'Porridge', path: 'images/eating/breakfast/porridge.png'},			//Button: 109
-		{ title: 'Rice', path: 'images/eating/breakfast/rice.png'}					//Button: 110
+		{ title: 'Rice', path: 'images/eating/breakfast/rice.png'},					//Button: 110
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Cutlery buttons
@@ -243,7 +236,8 @@ var eatingButtons =[
 		{ title: 'Glass', path: 'images/eating/cutlery/glass.png'},		//Button: 113
 		{ title: 'Knife', path: 'images/eating/cutlery/knife.png'},		//Button: 114
 		{ title: 'Plate', path: 'images/eating/cutlery/plate.png'},		//Button: 115
-		{ title: 'Spoon', path: 'images/eating/cutlery/spoon.png'}		//Button: 116
+		{ title: 'Spoon', path: 'images/eating/cutlery/spoon.png'},		//Button: 116
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Meal: Dinner/Lunch buttons
@@ -255,7 +249,8 @@ var eatingButtons =[
 		{ title: 'NonVeg', path: 'images/eating/meal/nonveg.png'},			//Button: 121
 		{ title: 'Pizza', path: 'images/eating/meal/pizza.png'},			//Button: 122
 		{ title: 'Rice', path: 'images/eating/meal/rice.png'},				//Button: 123
-		{ title: 'Roti', path: 'images/eating/meal/roti.png'}				//Button: 124
+		{ title: 'Roti', path: 'images/eating/meal/roti.png'},				//Button: 124
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Fruits buttons
@@ -268,7 +263,8 @@ var eatingButtons =[
 		{ title: 'Orange', path: 'images/eating/fruits/orange.png'},				//Button: 130
 		{ title: 'Pineapple', path: 'images/eating/fruits/pineapple.png'},			//Button: 131
 		{ title: 'Pomegranate', path: 'images/eating/fruits/pomegranate.png'},		//Button: 132
-		{ title: 'Watermelon', path: 'images/eating/fruits/watermelon.png'}			//Button: 133
+		{ title: 'Watermelon', path: 'images/eating/fruits/watermelon.png'},			//Button: 133
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Fruits buttons
@@ -281,7 +277,8 @@ var eatingButtons =[
 		{ title: 'Noodles', path: 'images/eating/snacks/noodles.png'},				//Button: 139
 		{ title: 'Pasteries', path: 'images/eating/snacks/pasteries.png'},			//Button: 140
 		{ title: 'Sweets', path: 'images/eating/snacks/sweets.png'},				//Button: 141
-		{ title: 'Wafers', path: 'images/eating/snacks/wafers.png'}					//Button: 142
+		{ title: 'Wafers', path: 'images/eating/snacks/wafers.png'},					//Button: 142
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 
@@ -292,7 +289,8 @@ var playButtons =[
 	{ title: 'Puzzles', path: 'images/play/puzzles.png'},				//Button: 145
 	{ title: 'Toys', path: 'images/play/toys.png'},						//Button: 146
 	{ title: 'TV', path: 'images/play/tv.png'},							//Button: 147
-	{ title: 'VideoGames', path: 'images/play/videogames.png'}			//Button: 148
+	{ title: 'VideoGames', path: 'images/play/videogames.png'},			//Button: 148
+	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 	// Music buttons
@@ -300,7 +298,8 @@ var playButtons =[
 		{ title: 'ChangeMusic', path: 'images/play/music/changemusic.png'},		//Button: 149
 		{ title: 'LetsDance', path: 'images/play/music/letsdance.png'},			//Button: 150
 		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},			//Button: 151
-		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}		//Button: 152
+		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'},		//Button: 152
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Outdoor-Games buttons
@@ -309,7 +308,8 @@ var playButtons =[
 		{ title: 'Garden', path: 'images/play/outdoorgames/garden.png'},		//Button: 154
 		{ title: 'Swing', path: 'images/play/outdoorgames/swing.png'},			//Button: 155
 		{ title: 'Terrace', path: 'images/play/outdoorgames/terrace.png'},		//Button: 156
-		{ title: 'Walk', path: 'images/play/outdoorgames/walk.png'}				//Button: 157
+		{ title: 'Walk', path: 'images/play/outdoorgames/walk.png'},				//Button: 157
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 
 	// Toys buttons
@@ -317,7 +317,8 @@ var playButtons =[
 		{ title: 'Cars', path: 'images/play/toys/cars.png'},						//Button: 158
 		{ title: 'ActionFigures', path: 'images/play/toys/actionfigures.png'},		//Button: 159		
 		{ title: 'PlayWithMe', path: 'images/play/toys/playwithme.png'},			//Button: 160
-		{ title: 'SoftToys', path: 'images/play/toys/softtoys.png'}					//Button: 161
+		{ title: 'SoftToys', path: 'images/play/toys/softtoys.png'},					//Button: 161
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// TV buttons
@@ -325,7 +326,8 @@ var playButtons =[
 		{ title: 'NextChannel', path: 'images/play/tv/nextchannel.png'},			//Button: 162
 		{ title: 'PreviousChannel', path: 'images/play/tv/previouschannel.png'},	//Button: 163
 		{ title: 'VolumeUp', path: 'images/play/music/volumeup.png'},				//Button: 164
-		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'}			//Button: 165
+		{ title: 'VolumeDown', path: 'images/play/music/volumedown.png'},			//Button: 165
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 
@@ -338,7 +340,8 @@ var peopleButtons =[
 	{ title: 'Friends', path: 'images/people/friends.png'},		//Button: 170
 	{ title: 'Teacher', path: 'images/people/teacher.png'},		//Button: 171
 	{ title: 'Nurse', path: 'images/people/nurse.png'},			//Button: 172
-	{ title: 'Doctor', path: 'images/people/doctor.png'}		//Button: 173
+	{ title: 'Doctor', path: 'images/people/doctor.png'},		//Button: 173
+	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 // Others buttons
@@ -348,7 +351,8 @@ var othersButtons =[
 	{ title: 'Hygiene', path: 'images/others/hygiene.png'},			//Button: 176
 	{ title: 'School', path: 'images/others/school.png'},			//Button: 177
 	{ title: 'Sleep', path: 'images/others/sleep.png'},				//Button: 178
-	{ title: 'Time', path: 'images/others/clock.png'}				//Button: 179
+	{ title: 'Time', path: 'images/others/clock.png'},				//Button: 179
+	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
 	// Clothes buttons
@@ -357,14 +361,16 @@ var othersButtons =[
 		{ title: 'ChangeInnerwear', path: 'images/others/clothes/changeinnerwear.png'},		//Button: 181
 		{ title: 'ChangeJeans', path: 'images/others/clothes/changejeans.png'},				//Button: 182
 		{ title: 'ChangeTShirt', path: 'images/others/clothes/changetshirt.png'},			//Button: 183
-		{ title: 'WearNightClothes', path: 'images/others/clothes/wearnightclothes.png'}	//Button: 184
+		{ title: 'WearNightClothes', path: 'images/others/clothes/wearnightclothes.png'},	//Button: 184
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Emergency buttons
 	var emergencyButtons =[
 		{ title: 'Bandage', path: 'images/others/emergency/bandage.png'},		//Button: 185
 		{ title: 'Help', path: 'images/others/emergency/help.png'},				//Button: 186
-		{ title: 'Medicine', path: 'images/others/emergency/medicine.png'}		//Button: 187
+		{ title: 'Medicine', path: 'images/others/emergency/medicine.png'},		//Button: 187
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Hygiene buttons
@@ -373,7 +379,8 @@ var othersButtons =[
 		{ title: 'Brush', path: 'images/others/hygiene/brush.png'},				//Button: 189
 		{ title: 'Facewash', path: 'images/others/hygiene/facewash.png'},		//Button: 190
 		{ title: 'Toilet', path: 'images/others/hygiene/toilet.png'},			//Button: 191
-		{ title: 'Vomit', path: 'images/others/hygiene/vomit.png'}				//Button: 192
+		{ title: 'Vomit', path: 'images/others/hygiene/vomit.png'},				//Button: 192
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// School buttons
@@ -382,7 +389,8 @@ var othersButtons =[
 		{ title: 'Books', path: 'images/others/school/books.png'},					//Button: 194
 		{ title: 'Bottle', path: 'images/others/school/bottle.png'},				//Button: 195
 		{ title: 'DontWantToGo', path: 'images/others/school/dontwanttogo.png'},	//Button: 196
-		{ title: 'HomeWork', path: 'images/others/school/homework.png'}				//Button: 197
+		{ title: 'HomeWork', path: 'images/others/school/homework.png'},				//Button: 197
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Sleep buttons
@@ -390,9 +398,10 @@ var othersButtons =[
 		{ title: 'Door', path: 'images/others/sleep/door.png'},					//Button: 198
 		{ title: 'Fan', path: 'images/others/sleep/fan.png'},					//Button: 199
 		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 200
-		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 201
+//		{ title: 'FeelingCold', path: 'images/others/sleep/feelingcold.png'},	//Button: 201
 		{ title: 'Light', path: 'images/others/sleep/light.png'},				//Button: 202
-		{ title: 'Window', path: 'images/others/sleep/window.png'}				//Button: 203
+		{ title: 'Window', path: 'images/others/sleep/window.png'},				//Button: 203
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 	
 	// Time buttons
@@ -403,7 +412,8 @@ var othersButtons =[
 		{ title: 'Morning', path: 'images/others/time/morning.png'},			//Button: 207
 		{ title: 'Night', path: 'images/others/time/night.png'},				//Button: 208
 		{ title: 'Tomorrow', path: 'images/others/time/tomorrow.png'},			//Button: 209
-		{ title: 'Yesterday', path: 'images/others/time/yesterday.png'}			//Button: 210
+		{ title: 'Yesterday', path: 'images/others/time/yesterday.png'},			//Button: 210
+		{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 	]
 
 //Create buttons	
@@ -486,566 +496,566 @@ win.addEventListener('click', function(e){
 				break;
 				
 			case 'Animals':
-				setButtonState(e, 24, othersButtons);
+				setButtonState(e, 24, animalsButtons);
 				actionButtonState = 24;
 				break;
 				
 			case 'Body':
-				setButtonState(e, 25, othersButtons);
+				setButtonState(e, 25, bodyButtons);
 				actionButtonState = 25;
 				break;
 				
 			case 'Books':
-				setButtonState(e, 26, othersButtons);
+				setButtonState(e, 26, booksButtons);
 				actionButtonState = 26;
 				break;
 				
 			case 'Colors':
-				setButtonState(e, 27, othersButtons);
+				setButtonState(e, 27, colorsButtons);
 				actionButtonState = 27;
 				break;
 			
 			case 'HomeObjects':
-				setButtonState(e, 28, othersButtons);
+				setButtonState(e, 28, homeObjectsButtons);
 				actionButtonState = 28;
 				break;
 				
 			case 'Shapes':
-				setButtonState(e, 29, othersButtons);
+				setButtonState(e, 29, shapesButtons);
 				actionButtonState = 29;
 				break;
 				
 			case 'Stationery':
-				setButtonState(e, 30, othersButtons);
+				setButtonState(e, 30, stationaryButtons);
 				actionButtonState = 30;
 				break;
 				
 			case 'Ant':
-				setButtonState(e, 31, othersButtons);
+				setButtonState(e, 31, 1);
 				actionButtonState = 31;
 				break;
 				
 			case 'Cat':
-				setButtonState(e, 32, othersButtons);
+				setButtonState(e, 32, 1);
 				actionButtonState = 32;
 				break;
 				
 			case 'Cockroach':
-				setButtonState(e, 33, othersButtons);
+				setButtonState(e, 33, 1);
 				actionButtonState = 33;
 				break;
 			
 			case 'Dog':
-				setButtonState(e, 34, othersButtons);
+				setButtonState(e, 34, 1);
 				actionButtonState = 34;
 				break;
 				
 			case 'Fly':
-				setButtonState(e, 35, othersButtons);
+				setButtonState(e, 35, 1);
 				actionButtonState = 35;
 				break;
 				
 			case 'Mosquito':
-				setButtonState(e, 36, othersButtons);
+				setButtonState(e, 36, 1);
 				actionButtonState = 36;
 				break;
 				
 			//Body Buttons
 			case 'Ears':
-				setButtonState(e, 37, othersButtons);
+				setButtonState(e, 37, 1);
 				actionButtonState = 37;
 				break;
 				
 			case 'Eyes':
-				setButtonState(e, 38, othersButtons);
+				setButtonState(e, 38, 1);
 				actionButtonState = 38;
 				break;
 				
 			case 'Fingers':
-				setButtonState(e, 39, othersButtons);
+				setButtonState(e, 39, 1);
 				actionButtonState = 39;
 				break;
 				
 			case 'Hair':
-				setButtonState(e, 40, othersButtons);
+				setButtonState(e, 40, 1);
 				actionButtonState = 40;
 				break;
 				
 			case 'Hand':
-				setButtonState(e, 41, othersButtons);
+				setButtonState(e, 41, 1);
 				actionButtonState = 41;
 				break;
 				
 			case 'Head':
-				setButtonState(e, 42, othersButtons);
+				setButtonState(e, 42, 1);
 				actionButtonState = 42;
 				break;
 			
 			case 'Legs':
-				setButtonState(e, 43, othersButtons);
+				setButtonState(e, 43, 1);
 				actionButtonState = 43;
 				break;
 				
 			case 'Mouth':
-				setButtonState(e, 44, othersButtons);
+				setButtonState(e, 44, 1);
 				actionButtonState = 44;
 				break;
 				
 			case 'Stomach':
-				setButtonState(e, 45, othersButtons);
+				setButtonState(e, 45, 1);
 				actionButtonState = 45;
 				break;
 				
 			//Books Buttons
 			case 'BedTimeStories':
-				setButtonState(e, 46, othersButtons);
+				setButtonState(e, 46, 1);
 				actionButtonState = 46;
 				break;
 				
 			case 'Comics':
-				setButtonState(e, 47, othersButtons);
+				setButtonState(e, 47, 1);
 				actionButtonState = 47;
 				break;
 				
 			case 'DrawingBook':
-				setButtonState(e, 48, othersButtons);
+				setButtonState(e, 48, 1);
 				actionButtonState = 48;
 				break;
 				
 			case 'Maths':
-				setButtonState(e, 49, othersButtons);
+				setButtonState(e, 49, 1);
 				actionButtonState = 49;
 				break;
 			
 			case 'RhymesBook':
-				setButtonState(e, 50, othersButtons);
+				setButtonState(e, 50, 1);
 				actionButtonState = 50;
 				break;
 				
 			case 'SchoolNotebook':
-				setButtonState(e, 51, othersButtons);
+				setButtonState(e, 51, 1);
 				actionButtonState = 51;
 				break;
 				
 			case 'Words':
-				setButtonState(e, 52, othersButtons);
+				setButtonState(e, 52, 1);
 				actionButtonState = 52;
 				break;
 			
 			//Colors
 			case 'Black':
-				setButtonState(e, 53, othersButtons);
+				setButtonState(e, 53, 1);
 				actionButtonState = 53;
 				break;
 			
 			case 'Blue':
-				setButtonState(e, 54, othersButtons);
+				setButtonState(e, 54, 1);
 				actionButtonState = 54;
 				break;
 			
 			case 'Brown':
-				setButtonState(e, 55, othersButtons);
+				setButtonState(e, 55, 1);
 				actionButtonState = 55;
 				break;
 			
 			case 'Golden':
-				setButtonState(e, 56, othersButtons);
+				setButtonState(e, 56, 1);
 				actionButtonState = 56;
 				break;
 			
 			case 'Green':
-				setButtonState(e, 57, othersButtons);
+				setButtonState(e, 57, 1);
 				actionButtonState = 57;
 				break;
 			
 			
 			case 'Red':
-				setButtonState(e, 58, othersButtons);
+				setButtonState(e, 58, 1);
 				actionButtonState = 58;
 				break;
 			
 			case 'Silver':
-				setButtonState(e, 59, othersButtons);
+				setButtonState(e, 59, 1);
 				actionButtonState = 59;
 				break;
 			
 			case 'White':
-				setButtonState(e, 60, othersButtons);
+				setButtonState(e, 60, 1);
 				actionButtonState = 60;
 				break;
 			
 			case 'Yellow':
-				setButtonState(e, 61, othersButtons);
+				setButtonState(e, 61, 1);
 				actionButtonState = 61;
 				break;
 			
 			//Home Objects
 			case 'Chair':
-				setButtonState(e, 62, othersButtons);
+				setButtonState(e, 62, 1);
 				actionButtonState = 62;
 				break;
 			
 			case 'Door':
-				setButtonState(e, 63, othersButtons);
+				setButtonState(e, 63, 1);
 				actionButtonState = 63;
 				break;
 			
 			case 'Fan':
-				setButtonState(e, 64, othersButtons);
+				setButtonState(e, 64, 1);
 				actionButtonState = 64;
 				break;
 			
 			case 'Kitchen':
-				setButtonState(e, 65, othersButtons);
+				setButtonState(e, 65, 1);
 				actionButtonState = 65;
 				break;
 			
 			case 'Sofa':
-				setButtonState(e, 66, othersButtons);
+				setButtonState(e, 66, 1);
 				actionButtonState = 66;
 				break;
 			
 			case 'Table':
-				setButtonState(e, 67, othersButtons);
+				setButtonState(e, 67, 1);
 				actionButtonState = 67;
 				break;
 			
 			case 'Toilet':
-				setButtonState(e, 68, othersButtons);
+				setButtonState(e, 68, 1);
 				actionButtonState = 68;
 				break;
 			
 			case 'Window':
-				setButtonState(e, 69, othersButtons);
+				setButtonState(e, 69, 1);
 				actionButtonState = 69;
 				break;
 			
 			//Shapes
 			case 'Circle':
-				setButtonState(e, 70, othersButtons);
+				setButtonState(e, 70, 1);
 				actionButtonState = 70;
 				break;
 			
 			case 'Freeform':
-				setButtonState(e, 71, othersButtons);
+				setButtonState(e, 71, 1);
 				actionButtonState = 71;
 				break;
 			
 			case 'Line':
-				setButtonState(e, 72, othersButtons);
+				setButtonState(e, 72, 1);
 				actionButtonState = 72;
 				break;
 			
 			case 'Rectangle':
-				setButtonState(e, 73, othersButtons);
+				setButtonState(e, 73, 1);
 				actionButtonState = 73;
 				break;
 			
 			case 'Square':
-				setButtonState(e, 74, othersButtons);
+				setButtonState(e, 74, 1);
 				actionButtonState = 74;
 				break;
 			
 			case 'Triangle':
-				setButtonState(e, 75, othersButtons);
+				setButtonState(e, 75, 1);
 				actionButtonState = 75;
 				break;
 				
 			//Stationeries
 			case 'BlankPaper':
-				setButtonState(e, 76, othersButtons);
+				setButtonState(e, 76, 1);
 				actionButtonState = 76;
 				break;
 			
 			case 'ColoredPaper':
-				setButtonState(e, 77, othersButtons);
+				setButtonState(e, 77, 1);
 				actionButtonState = 77;
 				break;
 			
 			case 'Crayons':
-				setButtonState(e, 78, othersButtons);
+				setButtonState(e, 78, 1);
 				actionButtonState = 78;
 				break;
 			
 			case 'Eraser':
-				setButtonState(e, 79, othersButtons);
+				setButtonState(e, 79, 1);
 				actionButtonState = 79;
 				break;
 			
 			case 'Pen':
-				setButtonState(e, 80, othersButtons);
+				setButtonState(e, 80, 1);
 				actionButtonState = 80;
 				break;
 			
 			case 'Pencil':
-				setButtonState(e, 81, othersButtons);
+				setButtonState(e, 81, 1);
 				actionButtonState = 1;
 				break;
 			
 			case 'Pouch':
-				setButtonState(e, 82, othersButtons);
+				setButtonState(e, 82, 1);
 				actionButtonState = 82;
 				break;
 			
 			case 'Scale':
-				setButtonState(e, 83, othersButtons);
+				setButtonState(e, 83, 1);
 				actionButtonState = 3;
 				break;
 			
 			case 'Sharpener':
-				setButtonState(e, 84, othersButtons);
+				setButtonState(e, 84, 1);
 				actionButtonState = 84;
 				break;
 			
 		//Eating Buttons
 			case 'AddOns':
-				setButtonState(e, 85, othersButtons);
+				setButtonState(e, 85, addOnsButtons);
 				actionButtonState = 85;
 				break;
 			
 			case 'Beverages':
-				setButtonState(e, 86, othersButtons);
+				setButtonState(e, 86, beveragesButtons);
 				actionButtonState = 86;
 				break;
 			
 			case 'Breakfast':
-				setButtonState(e, 87, othersButtons);
+				setButtonState(e, 87, breakfastButtons);
 				actionButtonState = 87;
 				break;
 			
 			case 'Cutlery':
-				setButtonState(e, 88, othersButtons);
+				setButtonState(e, 88, cutleryButtons);
 				actionButtonState = 88;
 				break;
 			
 			case 'Dinner':
-				setButtonState(e, 89, othersButtons);
+				setButtonState(e, 89, mealButtons);
 				actionButtonState = 89;
 				break;
 			
 			case 'Fruit':
-				setButtonState(e, 90, othersButtons);
+				setButtonState(e, 90, fruitsButtons);
 				actionButtonState = 90;
 				break;
 			
 			case 'Lunch':
-				setButtonState(e, 91, othersButtons);
+				setButtonState(e, 91, mealButtons);
 				actionButtonState = 91;
 				break;
 			
 			case 'Snacks':
-				setButtonState(e, 92, othersButtons);
+				setButtonState(e, 92, snacksButtons);
 				actionButtonState = 92;
 				break;
 				
 			//AddOns
 			case 'Butter':
-				setButtonState(e, 93, othersButtons);
+				setButtonState(e, 93, 1);
 				actionButtonState = 93;
 				break;
 			
 			case 'Jam':
-				setButtonState(e, 94, othersButtons);
+				setButtonState(e, 94, 1);
 				actionButtonState = 94;
 				break;
 			
 			case 'Masala':
-				setButtonState(e, 95, othersButtons);
+				setButtonState(e, 95, 1);
 				actionButtonState = 95;
 				break;
 			
 			case 'Pepper':
-				setButtonState(e, 96, othersButtons);
+				setButtonState(e, 96, 1);
 				actionButtonState = 96;
 				break;
 			
 			case 'Pickle':
-				setButtonState(e, 97, othersButtons);
+				setButtonState(e, 97, 1);
 				actionButtonState = 97;
 				break;
 			
 			case 'Salt':
-				setButtonState(e, 98, othersButtons);
+				setButtonState(e, 98, 1);
 				actionButtonState = 98;
 				break;
 			
 			case 'Sauce':
-				setButtonState(e, 99, othersButtons);
+				setButtonState(e, 99, 1);
 				actionButtonState = 99;
 				break;
 			
 			case 'Sugar':
-				setButtonState(e, 100, othersButtons);
+				setButtonState(e, 100, 1);
 				actionButtonState = 10;
 				break;
 				
 			//Beverages
 			case 'Juice':
-				setButtonState(e, 101, othersButtons);
+				setButtonState(e, 101, 1);
 				actionButtonState = 101;
 				break;
 			
 			case 'Milk':
-				setButtonState(e, 102, othersButtons);
+				setButtonState(e, 102, 1);
 				actionButtonState = 102;
 				break;
 			
 			case 'Milkshake':
-				setButtonState(e, 103, othersButtons);
+				setButtonState(e, 103, 1);
 				actionButtonState = 103;
 				break;
 			
 			case 'Tea':
-				setButtonState(e, 104, othersButtons);
+				setButtonState(e, 104, 1);
 				actionButtonState = 104;
 				break;
 	
 			//Breakfast
 			case 'Bread':
-				setButtonState(e, 105, othersButtons);
+				setButtonState(e, 105, 1);
 				actionButtonState = 105;
 				break;
 			
 			case 'Cornflakes':
-				setButtonState(e, 106, othersButtons);
+				setButtonState(e, 106, 1);
 				actionButtonState = 106;
 				break;
 			
 			case 'Eggs':
-				setButtonState(e, 107, othersButtons);
+				setButtonState(e, 107, 1);
 				actionButtonState = 107;
 				break;
 			
 			case 'Milk':
-				setButtonState(e, 108, othersButtons);
+				setButtonState(e, 108, 1);
 				actionButtonState = 108;
 				break;
 			
 			case 'Porridge':
-				setButtonState(e, 109, othersButtons);
+				setButtonState(e, 109, 1);
 				actionButtonState = 109;
 				break;
 			
 			case 'Rice':
-				setButtonState(e, 110, othersButtons);
+				setButtonState(e, 110, 1);
 				actionButtonState = 110;
 				break;
 				
 			//Cutlery
 			case 'Bowl':
-				setButtonState(e, 111, othersButtons);
+				setButtonState(e, 111, 1);
 				actionButtonState = 111;
 				break;
 			
 			case 'Fork':
-				setButtonState(e, 112, othersButtons);
+				setButtonState(e, 112, 1);
 				actionButtonState = 112;
 				break;
 			
 			case 'Glass':
-				setButtonState(e, 113, othersButtons);
+				setButtonState(e, 113, 1);
 				actionButtonState = 113;
 				break;
 			
 			case 'Knife':
-				setButtonState(e, 114, othersButtons);
+				setButtonState(e, 114, 1);
 				actionButtonState = 114;
 				break;
 			
 			case 'Plate':
-				setButtonState(e, 115, othersButtons);
+				setButtonState(e, 115, 1);
 				actionButtonState = 115;
 				break;
 			
 			case 'Spoon':
-				setButtonState(e, 116, othersButtons);
+				setButtonState(e, 116, 1);
 				actionButtonState = 116;
 				break;
 	
 			//Dinner, Lunch: Meal
 			case 'Curd':
-				setButtonState(e, 117, othersButtons);
+				setButtonState(e, 117, 1);
 				actionButtonState = 117;
 				break;
 			
 			case 'Curry':
-				setButtonState(e, 118, othersButtons);
+				setButtonState(e, 118, 1);
 				actionButtonState = 118;
 				break;
 			
 			case 'Dal':
-				setButtonState(e, 119, othersButtons);
+				setButtonState(e, 119, 1);
 				actionButtonState = 119;
 				break;
 			
 			case 'Khichdi':
-				setButtonState(e, 120, othersButtons);
+				setButtonState(e, 120, 1);
 				actionButtonState = 120;
 				break;
 			
 			case 'NonVeg':
-				setButtonState(e, 121, othersButtons);
+				setButtonState(e, 121, 1);
 				actionButtonState = 121;
 				break;
 			
 			case 'Pizza':
-				setButtonState(e, 122, othersButtons);
+				setButtonState(e, 122, 1);
 				actionButtonState = 122;
 				break;
 			
 			case 'Rice':
-				setButtonState(e, 123, othersButtons);
+				setButtonState(e, 123, 1);
 				actionButtonState = 123;
 				break;
 			
 			case 'Roti':
-				setButtonState(e, 124, othersButtons);
+				setButtonState(e, 124, 1);
 				actionButtonState = 124;
 				break;
 				
 			//Fruit
 			case 'Apple':
-				setButtonState(e, 125, othersButtons);
+				setButtonState(e, 125, 1);
 				actionButtonState = 125;
 				break;
 			
 			case 'Banana':
-				setButtonState(e, 126, othersButtons);
+				setButtonState(e, 126, 1);
 				actionButtonState = 16;
 				break;
 			
 			case 'Grapes':
-				setButtonState(e, 127, othersButtons);
+				setButtonState(e, 127, 1);
 				actionButtonState = 127;
 				break;
 			
 			case 'Guava':
-				setButtonState(e, 128, othersButtons);
+				setButtonState(e, 128, 1);
 				actionButtonState = 128;
 				break;
 			
 			case 'Mango':
-				setButtonState(e, 129, othersButtons);
+				setButtonState(e, 129, 1);
 				actionButtonState = 129;
 				break;
 			
 			case 'Orange':
-				setButtonState(e, 130, othersButtons);
+				setButtonState(e, 130, 1);
 				actionButtonState = 130;
 				break;
 			
 			case 'Pineapple':
-				setButtonState(e, 131, othersButtons);
+				setButtonState(e, 131, 1);
 				actionButtonState = 131;
 				break;
 			
 			case 'Pomegranate':
-				setButtonState(e, 132, othersButtons);
+				setButtonState(e, 132, 1);
 				actionButtonState = 132;
 				break;
 			
 			case 'Watermelon':
-				setButtonState(e, 133, othersButtons);
+				setButtonState(e, 133, 1);
 				actionButtonState = 133;
 				break;
 			
@@ -1053,167 +1063,167 @@ win.addEventListener('click', function(e){
 		
 			//Fruit
 			case 'Biscuits':
-				setButtonState(e, 134, othersButtons);
+				setButtonState(e, 134, 1);
 				actionButtonState = 134;
 				break;
 			
 			case 'Chats':
-				setButtonState(e, 135, othersButtons);
+				setButtonState(e, 135, 1);
 				actionButtonState = 135;
 				break;
 			
 			case 'Chocolate':
-				setButtonState(e, 136, othersButtons);
+				setButtonState(e, 136, 1);
 				actionButtonState = 136;
 				break;
 			
 			case 'IceCream':
-				setButtonState(e, 137, othersButtons);
+				setButtonState(e, 137, 1);
 				actionButtonState = 137;
 				break;
 			
 			case 'NonVeg':
-				setButtonState(e, 138, othersButtons);
+				setButtonState(e, 138, 1);
 				actionButtonState = 138;
 				break;
 			
 			case 'Noodles':
-				setButtonState(e, 139, othersButtons);
+				setButtonState(e, 139, 1);
 				actionButtonState = 139;
 				break;
 			
 			case 'Pasteries':
-				setButtonState(e, 140, othersButtons);
+				setButtonState(e, 140, 1);
 				actionButtonState = 140;
 				break;
 			
 			case 'Sweets':
-				setButtonState(e, 141, othersButtons);
+				setButtonState(e, 141, 1);
 				actionButtonState = 141;
 				break;
 			
 			case 'Wafers':
-				setButtonState(e, 142, othersButtons);
+				setButtonState(e, 142, 1);
 				actionButtonState = 142;
 				break;
 
 		//Play
 			case 'Music':
-				setButtonState(e, 143, othersButtons);
+				setButtonState(e, 143, musicButtons);
 				actionButtonState = 143;
 				break;
 			
 			case 'OutdoorGames':
-				setButtonState(e, 144, othersButtons);
+				setButtonState(e, 144, outdoorGamesButtons);
 				actionButtonState = 144;
 				break;
 			
 			case 'Puzzles':
-				setButtonState(e, 145, othersButtons);
+				setButtonState(e, 145, 1);
 				actionButtonState = 145;
 				break;
 			
 			case 'Toys':
-				setButtonState(e, 146, othersButtons);
+				setButtonState(e, 146, toysButtons);
 				actionButtonState = 146;
 				break;
 			
 			case 'TV':
-				setButtonState(e, 147, othersButtons);
+				setButtonState(e, 147, tvButtons);
 				actionButtonState = 147;
 				break;
 			
 			case 'VideoGames':
-				setButtonState(e, 148, othersButtons);
+				setButtonState(e, 148, 1);
 				actionButtonState = 148;
 				break;
 
 			//Music
 			case 'ChangeMusic':
-				setButtonState(e, 149, othersButtons);
+				setButtonState(e, 149, 1);
 				actionButtonState = 149;
 				break;
 			
 			case 'LetsDance':
-				setButtonState(e, 150, othersButtons);
+				setButtonState(e, 150, 1);
 				actionButtonState = 150;
 				break;
 			
 			case 'VolumeUp':
-				setButtonState(e, 151, othersButtons);
+				setButtonState(e, 151, 1);
 				actionButtonState = 151;
 				break;
 			
 			case 'VolumeDown':
-				setButtonState(e, 152, othersButtons);
+				setButtonState(e, 152, 1);
 				actionButtonState = 152;
 				break;
 			
 			//Outdoor Games
 			case 'Cars':
-				setButtonState(e, 153, othersButtons);
+				setButtonState(e, 153, 1);
 				actionButtonState = 153;
 				break;
 			
 			case 'Garden':
-				setButtonState(e, 154, othersButtons);
+				setButtonState(e, 154, 1);
 				actionButtonState = 154;
 				break;
 			
 			case 'Swing':
-				setButtonState(e, 155, othersButtons);
+				setButtonState(e, 155, 1);
 				actionButtonState = 155;
 				break;
 			
 			case 'Terrace':
-				setButtonState(e, 156, othersButtons);
+				setButtonState(e, 156, 1);
 				actionButtonState = 156;
 				break;
 			
 			case 'Walk':
-				setButtonState(e, 157, othersButtons);
+				setButtonState(e, 157, 1);
 				actionButtonState = 157;
 				break;
 			
 			//Toys
 			case 'Cars':
-				setButtonState(e, 158, othersButtons);
+				setButtonState(e, 158, 1);
 				actionButtonState = 158;
 				break;
 			
 			case 'ActionFigures':
-				setButtonState(e, 159, othersButtons);
+				setButtonState(e, 159, 1);
 				actionButtonState = 159;
 				break;
 			
 			case 'PlayWithMe':
-				setButtonState(e, 160, othersButtons);
+				setButtonState(e, 160, 1);
 				actionButtonState = 160;
 				break;
 			
 			case 'SoftToys':
-				setButtonState(e, 161, othersButtons);
+				setButtonState(e, 161, 1);
 				actionButtonState = 161;
 				break;
 
 			//TV
 			case 'NextChannel':
-				setButtonState(e, 162, othersButtons);
+				setButtonState(e, 162, 1);
 				actionButtonState = 162;
 				break;
 			
 			case 'PreviousChannel':
-				setButtonState(e, 163, othersButtons);
+				setButtonState(e, 163, 1);
 				actionButtonState = 163;
 				break;
 			
 			case 'VolumeUp':
-				setButtonState(e, 164, othersButtons);
+				setButtonState(e, 164, 1);
 				actionButtonState = 164;
 				break;
 			
 			case 'VolumeDown':
-				setButtonState(e, 165, othersButtons);
+				setButtonState(e, 165, 1);
 				actionButtonState = 165;
 				break;
 				
@@ -1221,250 +1231,247 @@ win.addEventListener('click', function(e){
 
 			//People
 			case 'Dad':
-				setButtonState(e, 166, othersButtons);
+				setButtonState(e, 166, 1);
 				actionButtonState = 166;
 				break;
 			
 			case 'Mom':
-				setButtonState(e, 167, othersButtons);
+				setButtonState(e, 167, 1);
 				actionButtonState = 167;
 				break;
 			
 			case 'Brother':
-				setButtonState(e, 168, othersButtons);
+				setButtonState(e, 168, 1);
 				actionButtonState = 168;
 				break;
 			
 			case 'Sister':
-				setButtonState(e, 169, othersButtons);
+				setButtonState(e, 169, 1);
 				actionButtonState = 169;
 				break;
 			
 			case 'Friends':
-				setButtonState(e, 170, othersButtons);
+				setButtonState(e, 170, 1);
 				actionButtonState = 170;
 				break;
 			
 			case 'Teacher':
-				setButtonState(e, 171, othersButtons);
+				setButtonState(e, 171, 1);
 				actionButtonState = 171;
 				break;
 			
 			case 'Nurse':
-				setButtonState(e, 172, othersButtons);
+				setButtonState(e, 172, 1);
 				actionButtonState = 172;
 				break;
 			
 			case 'Doctor':
-				setButtonState(e, 173, othersButtons);
+				setButtonState(e, 173, 1);
 				actionButtonState = 173;
 				break;
 
 		//Others Button
 			case 'Clothes':
-				setButtonState(e, 174, othersButtons);
+				setButtonState(e, 174, clothesButtons);
 				actionButtonState = 174;
 				break;
 			
 			case 'Emergency':
-				setButtonState(e, 175, othersButtons);
+				setButtonState(e, 175, emergencyButtons);
 				actionButtonState = 175;
 				break;
 			
 			case 'Hygiene':
-				setButtonState(e, 176, othersButtons);
+				setButtonState(e, 176, hygieneButtons);
 				actionButtonState = 176;
 				break;
 			
 			case 'School':
-				setButtonState(e, 177, othersButtons);
+				setButtonState(e, 177, schoolButtons);
 				actionButtonState = 177;
 				break;
 			
 			case 'Sleep':
-				setButtonState(e, 178, othersButtons);
+				setButtonState(e, 178, sleepButtons);
 				actionButtonState = 178;
 				break;
 			
 			case 'Time':
-				setButtonState(e, 179, othersButtons);
+				setButtonState(e, 179, timeButtons);
 				actionButtonState = 179;
 				break;
 
 			//Clothes
 			case 'ChangeFootwear':
-				setButtonState(e, 180, othersButtons);
+				setButtonState(e, 180, 1);
 				actionButtonState = 180;
 				break;
 			
 			case 'ChangeInnerwear':
-				setButtonState(e, 181, othersButtons);
+				setButtonState(e, 181, 1);
 				actionButtonState = 181;
 				break;
 			
 			case 'ChangeJeans':
-				setButtonState(e, 182, othersButtons);
+				setButtonState(e, 182, 1);
 				actionButtonState = 182;
 				break;
 			
 			case 'ChangeTShirt':
-				setButtonState(e, 183, othersButtons);
+				setButtonState(e, 183, 1);
 				actionButtonState = 183;
 				break;
 			
 			case 'WearNightClothes':
-				setButtonState(e, 184, othersButtons);
+				setButtonState(e, 184, 1);
 				actionButtonState = 184;
 				break;
 			
 			//Emergency
 			case 'Bandage':
-				setButtonState(e, 185, othersButtons);
+				setButtonState(e, 185, 1);
 				actionButtonState = 185;
 				break;
 			
 			case 'Help':
-				setButtonState(e, 186, othersButtons);
+				setButtonState(e, 186, 1);
 				actionButtonState = 186;
 				break;
 			
 			case 'Medicine':
-				setButtonState(e, 187, othersButtons);
+				setButtonState(e, 187, 1);
 				actionButtonState = 17;
 				break;
 			
 			//Hygiene
 			case 'Bath':
-				setButtonState(e, 188, othersButtons);
+				setButtonState(e, 188, 1);
 				actionButtonState = 188;
 				break;
 			
 			case 'Brush':
-				setButtonState(e, 189, othersButtons);
+				setButtonState(e, 189, 1);
 				actionButtonState = 189;
 				break;
 			
 			case 'Facewash':
-				setButtonState(e, 190, othersButtons);
+				setButtonState(e, 190, 1);
 				actionButtonState = 190;
 				break;
 			
 			case 'Toilet':
-				setButtonState(e, 191, othersButtons);
+				setButtonState(e, 191, 1);
 				actionButtonState = 11;
 				break;
 			
 			case 'Vomit':
-				setButtonState(e, 192, othersButtons);
+				setButtonState(e, 192, 1);
 				actionButtonState = 192;
 				break;
 			
 			//School
 			case 'Bag':
-				setButtonState(e, 193, othersButtons);
+				setButtonState(e, 193, 1);
 				actionButtonState = 193;
 				break;
 			
 			case 'Books':
-				setButtonState(e, 194, othersButtons);
+				setButtonState(e, 194, 1);
 				actionButtonState = 194;
 				break;
 			
 			case 'Bottle':
-				setButtonState(e, 195, othersButtons);
+				setButtonState(e, 195, 1);
 				actionButtonState = 195;
 				break;
 			
 			case 'DontWantToGo':
-				setButtonState(e, 196, othersButtons);
+				setButtonState(e, 196, 1);
 				actionButtonState = 196;
 				break;
 			
 			case 'HomeWork':
-				setButtonState(e, 197, othersButtons);
+				setButtonState(e, 197, 1);
 				actionButtonState = 197;
 				break;
 			
 			//Sleep
 			case 'Door':
-				setButtonState(e, 198, othersButtons);
+				setButtonState(e, 198, 1);
 				actionButtonState = 198;
 				break;
 			
 			case 'Fan':
-				setButtonState(e, 199, othersButtons);
+				setButtonState(e, 199, 1);
 				actionButtonState = 199;
 				break;
 			
 			case 'FeelingCold':
-				setButtonState(e, 200, othersButtons);
+				setButtonState(e, 200, 1);
 				actionButtonState = 200;
 				break;
 			
 			case 'FeelingWarm':
-				setButtonState(e, 201, othersButtons);
+				setButtonState(e, 201, 1);
 				actionButtonState = 201;
 				break;
 			
 			case 'Light':
-				setButtonState(e, 202, othersButtons);
+				setButtonState(e, 202, 1);
 				actionButtonState = 202;
 				break;
 			
 			case 'Window':
-				setButtonState(e, 203, othersButtons);
+				setButtonState(e, 203, 1);
 				actionButtonState = 203;
 				break;
 			
 			//Time
 			case 'Afternoon':
-				setButtonState(e, 204, othersButtons);
+				setButtonState(e, 204, 1);
 				actionButtonState = 204;
 				break;
 			
 			case 'CurrentTime':
-				setButtonState(e, 205, othersButtons);
+				setButtonState(e, 205, 1);
 				actionButtonState = 205;
 				break;
 			
 			case 'Evening':
-				setButtonState(e, 206, othersButtons);
+				setButtonState(e, 206, 1);
 				actionButtonState = 206;
 				break;
 			
 			case 'Morning':
-				setButtonState(e, 207, othersButtons);
+				setButtonState(e, 207, 1);
 				actionButtonState = 207;
 				break;
 			
 			case 'Night':
-				setButtonState(e, 208, othersButtons);
+				setButtonState(e, 208, 1);
 				actionButtonState = 208;
 				break;
 			
 			case 'Tomorrow':
-				setButtonState(e, 209, othersButtons);
+				setButtonState(e, 209, 1);
 				actionButtonState = 209;
 				break;
 			
 			case 'Yesterday':
-				setButtonState(e, 210, othersButtons);
+				setButtonState(e, 210, 1);
 				actionButtonState = 210;
+				break;
+				
+			case 'goHome':
+				setButtonState(e, 0, homeButtons);
+				actionButtonState = 0;
 				break;
 			
 			default:
 				//do nothing
 		}
-	
-		Titanium.API.info("Action");
 		
-	} else {
-		//User did not clicked on a button
-		//Do nothing
 	}
-	
-	Titanium.API.info("actionButtonState " + actionButtonState);
-	
 	
 	//var whichView = e.source.title;
 	//If No actions are selected
@@ -1530,7 +1537,11 @@ win.addEventListener('click', function(e){
 	} else {
 		//Action button is on
 		
-		if(actionButtonState == 19){
+		if(actionButtonState == 0){
+			//Home button sound
+			audio = getAudioFile('media/home/Home.mp3');
+
+		} else if(actionButtonState == 19){
 			//If 'Learning'
 			soundPath('media/home/learning.mp3');
 		} else if (actionButtonState == 20){
@@ -1731,7 +1742,7 @@ win.addEventListener('click', function(e){
 			soundPath('media/learning/stationery/Sharpener.mp3');
 		} else if (actionButtonState == 85){
 			//If 'AddOns'
-			soundPath('media/learning/stationery/AddOn.mp3');
+			soundPath('media/learning/stationery/AddOns.mp3');
 		} else if (actionButtonState == 86){
 			//If 'Beverages'
 			soundPath('media/learning/stationery/Beverage.mp3');
@@ -1905,22 +1916,22 @@ win.addEventListener('click', function(e){
 			soundPath('media/eating/snack/Wafers.mp3');
 		} else if (actionButtonState == 143){
 			//If 'ChangeMusic'
-			soundPath('media/play/music/Music.mp3');		//Play
+			soundPath('media/play/Music.mp3');		//Play
 		} else if (actionButtonState == 144){
 			//If 'LetsDance'
-			soundPath('media/play/music/Outdoor.mp3');
+			soundPath('media/play/Outdoor.mp3');
 		} else if (actionButtonState == 145){
 			//If 'VolumeDown'
-			soundPath('media/play/music/Puzzles.mp3');
+			soundPath('media/play/Puzzles.mp3');
 		} else if (actionButtonState == 146){
 			//If 'VolumeUp'
-			soundPath('media/play/music/Toys.mp3');
+			soundPath('media/play/Toys.mp3');
 		} else if (actionButtonState == 147){
 			//If 'Cars'
-			soundPath('media/play/outdoor/TV.mp3');
+			soundPath('media/play/TV.mp3');
 		} else if (actionButtonState == 148){
 			//If 'Garden'
-			soundPath('media/play/outdoor/VideoGames.mp3');
+			soundPath('media/play/VideoGames.mp3');
 		} else if (actionButtonState == 149){
 			//If 'ChangeMusic'
 			soundPath('media/play/music/ChangeMusic.mp3');		//Play>Music
@@ -2112,27 +2123,72 @@ win.addEventListener('click', function(e){
 	
 })
 
-
-
 /* Button creation function */
 function createButtons(data){
 	
+	var height;
+	
 	for (var i = 0; i < data.length; i++){
+		
+		//Distance from top where icons should be
+		height = 20+90*i+20*i;
+		
 		//Creating each button
 		btn[i]  = Titanium.UI.createImageView({
 			image:  data[i].path,
 			height: 90,
 			width: 90,
-			top: 20+90*i+20*i,
+			top: height,
 			title : data[i].title,
 			type: 'action',
 			value: 1
 		});
 		
 		btn[i].addEventListener('click',changeState);
-		
+
 		//Adding the buttons to the center view
 		centerButtons.add(btn[i]);
+	}
+	centerButtons.height = height +150;
+	
+	//Scroll to top
+	scrollView.setContentOffset({x:0 ,y:0});
+	
+}
+
+//Create the Main Buttons
+function createMainButtons(data){
+	/* Generate Main Buttons */
+	for (var i = 0; i < data.length; i++){
+		
+		//Set button margin as per its position: left or right
+		marginLeft = 20;
+		if (i%2 == 0){
+			marginTop = 40+70*i;
+		}
+		
+		//Creating each button
+		mainBtn[i]  = Titanium.UI.createImageView({
+			_id: i,
+			image:  data[i].path,
+			left: marginLeft,
+			height: 70,
+			width: 70,
+			top: marginTop,
+			title: data[i].title,
+			type: 'main',
+			value: 1
+		});
+		
+		//Changing state for main Buttons (separated from action buttons as Main buttons have 3 states while action buttons have 2)
+		mainBtn[i].addEventListener('click',changeMainBtnState);
+		
+		if(i%2 == 0){
+			mainHolderLeft.add(mainBtn[i]);
+		} else {
+			mainHolderRight.add(mainBtn[i]);
+		}
+		
 	}
 }
 
@@ -2374,31 +2430,50 @@ function removeAllChildren(viewObject){
 }
 
 function setButtonState(button, buttonNo, nextLevelButtons){
-	if(temp == 1){
-					
-		temp = 2;
-		//button.source.backgroundColor = '#333';
-	} else if (temp == 2){
-		
-		if(actionButtonState == buttonNo){
+	
+	if(buttonNo == 0){
+
+		//Go to Home
+		//Refactor the following codes as its the same as the temp == 2
+			
 			//Emptying Button names array
 			btn.length = 0;
 			mainButtonState = null;
 			
-			Titanium.API.info("mainButtonState " + mainButtonState +"; actionButtonState " + actionButtonState);
-			
-			//Load inner page
-			removeAllChildren(centerButtons);
-			createButtons(nextLevelButtons);
-			
-			inside = true;
-		}
-		
+			if(nextLevelButtons != 1){
+				//Load inner page
+				removeAllChildren(centerButtons);
+				createButtons(nextLevelButtons);
+				
+				//Meaning new page/button has been loaded
+				inside = true;	
+			}
+
 		temp = 1;
-		//button.source.backgroundColor = null;
 	} else {
-		//Some other click: :'(
+		if(temp == 1){
+			temp = 2;
+		} else if (temp == 2){
+			
+			if(actionButtonState == buttonNo){
+				//Emptying Button names array
+				btn.length = 0;
+				mainButtonState = null;
+				
+				if(nextLevelButtons != 1){
+					//Load inner page
+					removeAllChildren(centerButtons);
+					createButtons(nextLevelButtons);
+					
+					//Meaning new page/button has been loaded
+					inside = true;	
+				}
+			}
+			
+			temp = 1;
+		}
 	}
+	
 	
 	if(inside){
 		actionButtonState = null;
@@ -2409,15 +2484,602 @@ function setButtonState(button, buttonNo, nextLevelButtons){
 
 }
 
-
 //Changing the state of the clicked button
 function changeState(e){
     //Changing active button background to Grey
-    e.source.backgroundColor = '#C1C1C1';
+    //e.source.backgroundColor = '#C1C1C1';
+    var whichBtn;
+	//Title of the button
+	whichBtn = e.source.title;
+    
+    //if(e.source.value == 1){
+    	
+		//Button state glow change
+		if(whichBtn == 'Learning'){
+			Ti.API.info("Inside Learning")
+			e.source.image = 'images/home/state1/learning.png';
+		} else if(whichBtn == 'Eating'){
+			e.source.image = 'images/home/state1/eating.png';
+		} else if(whichBtn == 'Play'){	
+			e.source.image = 'images/home/state1/playing.png';
+		} else if(whichBtn == 'People'){	
+			e.source.image = 'images/home/state1/people.png';
+		} else if(whichBtn == 'Other'){	
+			e.source.image = 'images/home/state1/others.png';			//HomeButtons Ends
+		} else if(whichBtn == 'AddOns'){
+			e.source.image = 'images/eating/state1/addons.png';
+		} else if(whichBtn == 'Beverages'){
+			e.source.image = 'images/eating/state1/beverages.png';
+		} else if(whichBtn == 'Breakfast'){	
+			e.source.image = 'images/eating/state1/breakfast.png';
+		} else if(whichBtn == 'Cutlery'){	
+			e.source.image = 'images/eating/state1/cutlery.png';
+		} else if(whichBtn == 'Dinner'){	
+			e.source.image = 'images/eating/state1/dinner.png';
+		} else if(whichBtn == 'Fruit'){	
+			e.source.image = 'images/eating/state1/fruits.png';
+		} else if(whichBtn == 'Lunch'){	
+			e.source.image = 'images/eating/state1/lunch.png';
+		} else if(whichBtn == 'Snacks'){	
+			e.source.image = 'images/eating/state1/snacks.png';			//Eating Buttons Ends
+		} else if(whichBtn == 'Butter'){
+			e.source.image = 'images/eating/addons/state1/butter.png';
+		} else if(whichBtn == 'Jam'){	
+			e.source.image = 'images/eating/addons/state1/jam.png';
+		} else if(whichBtn == 'Masala'){	
+			e.source.image = 'images/eating/addons/state1/masala.png';
+		} else if(whichBtn == 'Pepper'){	
+			e.source.image = 'images/eating/addons/state1/pepper.png';
+		} else if(whichBtn == 'Pickle'){	
+			e.source.image = 'images/eating/addons/state1/pickle.png';
+		} else if(whichBtn == 'Salt'){	
+			e.source.image = 'images/eating/addons/state1/salt.png';
+		} else if(whichBtn == 'Sauce'){	
+			e.source.image = 'images/eating/addons/state1/sauce.png';
+		} else if(whichBtn == 'Sugar'){	
+			e.source.image = 'images/eating/addons/state1/sugar.png';	//AddOns end
+		} else if(whichBtn == 'Juice'){	
+			e.source.image = 'images/eating/beverages/state1/juice.png';
+		} else if(whichBtn == 'Milk'){	
+			e.source.image = 'images/eating/beverages/state1/milk.png';
+		}  else if(whichBtn == 'Milkshake'){	
+			e.source.image = 'images/eating/beverages/state1/milkshake.png';
+		} else if(whichBtn == 'Tea'){	
+			e.source.image = 'images/eating/breakfast/state1/tea.png';	//Beverages end
+		} else if(whichBtn == 'Bread'){	
+			e.source.image = 'images/eating/breakfast/state1/bread.png';
+		} else if(whichBtn == 'Cornflakes'){	
+			e.source.image = 'images/eating/breakfast/state1/cornflakes.png';	
+		} else if(whichBtn == 'Eggs'){	
+			e.source.image = 'images/eating/breakfast/state1/eggs.png';
+		} else if(whichBtn == 'Porridge'){										//Milk removes as same is there in beverage
+			e.source.image = 'images/eating/breakfast/state1/porridge.png';
+		} else if(whichBtn == 'Rice'){	
+			e.source.image = 'images/eating/breakfast/state1/rice.png';		//Breakfast ends
+		} else if(whichBtn == 'Bowl'){	
+			e.source.image = 'images/eating/cutlery/state1/bowl.png';	
+		} else if(whichBtn == 'Fork'){	
+			e.source.image = 'images/eating/cutlery/state1/fork.png';
+		} else if(whichBtn == 'Glass'){	
+			e.source.image = 'images/eating/cutlery/state1/glass.png';	
+		} else if(whichBtn == 'Knife'){	
+			e.source.image = 'images/eating/cutlery/state1/knife.png';
+		} else if(whichBtn == 'Plate'){	
+			e.source.image = 'images/eating/cutlery/state1/plate.png';
+		} else if(whichBtn == 'Spoon'){	
+			e.source.image = 'images/eating/cutlery/state1/spoon.png';	//Breakfast ends
+		}
+		
+		else if(whichBtn == 'curd'){	
+			e.source.image = 'images/eating/meal/state1/curd.png';
+		} else if(whichBtn == 'Curry'){	
+			e.source.image = 'images/eating/meal/state1/curry.png';	
+		} else if(whichBtn == 'Dal'){	
+			e.source.image = 'images/eating/meal/state1/dal.png';	
+		} else if(whichBtn == 'Khichdi'){	
+			e.source.image = 'images/eating/meal/state1/khichdi.png';
+		} else if(whichBtn == 'NonVeg'){	
+			e.source.image = 'images/eating/meal/state1/nonveg.png';	
+		} else if(whichBtn == 'Pizza'){	
+			e.source.image = 'images/eating/meal/state1/pizza.png';
+		} else if(whichBtn == 'Rice'){	
+			e.source.image = 'images/eating/meal/state1/rice.png';
+		} else if(whichBtn == 'Roti'){	
+			e.source.image = 'images/eating/meal/state1/roti.png';	//Meal: Lunch/Dinner ends
+		}
+		
+		else if(whichBtn == 'Apple'){	
+			e.source.image = 'images/eating/fruits/state1/apple.png';
+		} else if(whichBtn == 'Banana'){	
+			e.source.image = 'images/eating/fruits/state1/banana.png';	
+		} else if(whichBtn == 'Grapes'){	
+			e.source.image = 'images/eating/fruits/state1/grapes.png';	
+		} else if(whichBtn == 'Guava'){	
+			e.source.image = 'images/eating/fruits/state1/guava.png';
+		} else if(whichBtn == 'Mango'){	
+			e.source.image = 'images/eating/fruits/state1/mango.png';	
+		} else if(whichBtn == 'Orange'){	
+			e.source.image = 'images/eating/fruits/state1/orange.png';
+		} else if(whichBtn == 'Pineapple'){	
+			e.source.image = 'images/eating/fruits/state1/pineapple.png';
+		} else if(whichBtn == 'Pomegranate'){	
+			e.source.image = 'images/eating/fruits/state1/pomegranate.png';
+		} else if(whichBtn == 'Watermelon'){	
+			e.source.image = 'images/eating/fruits/state1/watermelon.png';	//Fruits ends
+		}
+		
+		else if(whichBtn == 'Biscuits'){	
+			e.source.image = 'images/eating/snacks/state1/biscuits.png';
+		} else if(whichBtn == 'Chats'){	
+			e.source.image = 'images/eating/snacks/state1/chats.png';	
+		} else if(whichBtn == 'Chocolate'){	
+			e.source.image = 'images/eating/snacks/state1/chocolate.png';	
+		} else if(whichBtn == 'IceCream'){	
+			e.source.image = 'images/eating/snacks/state1/icecream.png';
+		} else if(whichBtn == 'NonVeg'){	
+			e.source.image = 'images/eating/snacks/state1/nonveg.png';	
+		} else if(whichBtn == 'Noodles'){	
+			e.source.image = 'images/eating/snacks/state1/noodles.png';
+		} else if(whichBtn == 'Pasteries'){	
+			e.source.image = 'images/eating/snacks/state1/pasteries.png';
+		} else if(whichBtn == 'Sweets'){	
+			e.source.image = 'images/eating/snacks/state1/sweets.png';
+		} else if(whichBtn == 'Wafers'){	
+			e.source.image = 'images/eating/snacks/state1/wafers.png';	//Snacks ends
+		}
+		
+		 else if(whichBtn == 'Music'){	
+			e.source.image = 'images/play/state1/music.png';
+		} else if(whichBtn == 'OutdoorGames'){	
+			e.source.image = 'images/play/state1/outdoorgames.png';	
+		} else if(whichBtn == 'Puzzles'){	
+			e.source.image = 'images/play/state1/puzzles.png';
+		} else if(whichBtn == 'Toys'){	
+			e.source.image = 'images/play/state1/toys.png';
+		} else if(whichBtn == 'TV'){	
+			e.source.image = 'images/play/state1/tv.png';
+		} else if(whichBtn == 'VideoGames'){	
+			e.source.image = 'images/play/state1/videogames.png';	//Play buttons ends
+		}
+		
+		 else if(whichBtn == 'ChangeMusic'){	
+			e.source.image = 'images/play/music/state1/changemusic.png';
+		} else if(whichBtn == 'LetsDance'){	
+			e.source.image = 'images/play/music/state1/letsdance.png';
+		} else if(whichBtn == 'VolumeUp'){	
+			e.source.image = 'images/play/music/state1/volumedown.png';
+		} else if(whichBtn == 'VolumeDown'){	
+			e.source.image = 'images/play/music/state1/volumeup.png';	//Music ends
+		}
+		
+		 else if(whichBtn == 'Cars'){	
+			e.source.image = 'images/play/outdoorgames/state1/cars.png';
+		} else if(whichBtn == 'Garden'){	
+			e.source.image = 'images/play/outdoorgames/state1/garden.png';
+		} else if(whichBtn == 'Swing'){	
+			e.source.image = 'images/play/outdoorgames/state1/swing.png';
+		} else if(whichBtn == 'Terrace'){	
+			e.source.image = 'images/play/outdoorgames/state1/terrace.png';
+		} else if(whichBtn == 'Walk'){	
+			e.source.image = 'images/play/outdoorgames/state1/walk.png';	//OutDoorGames ends
+		}
+		
+		 else if(whichBtn == 'ActionFigures'){											//"cars" removed as it's already there in OutDoorGames
+			e.source.image = 'images/play/toys/state1/actionfigures.png';
+		} else if(whichBtn == 'PlayWithMe'){	
+			e.source.image = 'images/play/toys/state1/playwithme.png';
+		} else if(whichBtn == 'SoftToys'){	
+			e.source.image = 'images/play/toys/state1/softtoys.png';	//Toys ends
+		}
+		
+		 else if(whichBtn == 'NextChannel'){	
+			e.source.image = 'images/play/tv/state1/garden.png';		//Volume "Up/Down" removed as it's already there in Music
+		} else if(whichBtn == 'PreviousChannel'){	
+			e.source.image = 'images/play/tv/state1/swing.png';		//OutDoorGames ends
+		}
+		
+		 else if(whichBtn == 'Dad'){	
+			e.source.image = 'images/people/state1/dad.png';	
+		} else if(whichBtn == 'Mom'){	
+			e.source.image = 'images/people/state1/mom.png';	
+		} else if(whichBtn == 'Brother'){	
+			e.source.image = 'images/people/state1/brother.png';
+		} else if(whichBtn == 'Sister'){	
+			e.source.image = 'images/people/state1/sister.png';	
+		} else if(whichBtn == 'Friends'){	
+			e.source.image = 'images/people/state1/friends.png';
+		} else if(whichBtn == 'Teacher'){	
+			e.source.image = 'images/people/state1/teacher.png';
+		} else if(whichBtn == 'Nurse'){	
+			e.source.image = 'images/people/state1/nurse.png';
+		} else if(whichBtn == 'Doctor'){	
+			e.source.image = 'images/people/state1/doctor.png';	//People Buttons ends
+		}
+		
+		 else if(whichBtn == 'Clothes'){	
+			e.source.image = 'images/others/state1/clothes.png';
+		} else if(whichBtn == 'Emergency'){	
+			e.source.image = 'images/others/state1/emergency.png';	
+		} else if(whichBtn == 'Hygiene'){	
+			e.source.image = 'images/others/state1/hygiene.png';
+		} else if(whichBtn == 'School'){	
+			e.source.image = 'images/others/state1/school.png';
+		} else if(whichBtn == 'Sleep'){	
+			e.source.image = 'images/others/state1/sleep.png';
+		} else if(whichBtn == 'Time'){	
+			e.source.image = 'images/others/state1/time.png';	//Others Buttons ends
+		}
+		
+		 else if(whichBtn == 'ChangeFootwear'){	
+			e.source.image = 'images/others/clothes/state1/changefootwear.png';	
+		} else if(whichBtn == 'ChangeInnerwear'){	
+			e.source.image = 'images/others/clothes/state1/changeinnerwear.png';
+		} else if(whichBtn == 'ChangeJeans'){	
+			e.source.image = 'images/others/clothes/state1/changejeans.png';
+		} else if(whichBtn == 'ChangeTShirt'){	
+			e.source.image = 'images/others/clothes/state1/changetshirt.png';
+		} else if(whichBtn == 'WearNightClothes'){	
+			e.source.image = 'images/others/clothes/state1/wearnightclothes.png';	//Clothes ends
+		}
+		
+		 else if(whichBtn == 'Bandage'){	
+			e.source.image = 'images/others/emergency/state1/bandage.png';
+		} else if(whichBtn == 'Help'){	
+			e.source.image = 'images/others/emergency/state1/help.png';
+		} else if(whichBtn == 'Medicine'){	
+			e.source.image = 'images/others/emergency/state1/medicine.png';	//Emergency ends
+		}
+		
+		 else if(whichBtn == 'Bath'){	
+			e.source.image = 'images/others/hygiene/state1/bath.png';	
+		} else if(whichBtn == 'Brush'){	
+			e.source.image = 'images/others/hygiene/state1/brush.png';
+		} else if(whichBtn == 'Facewash'){	
+			e.source.image = 'images/others/hygiene/state1/facewash.png';
+		} else if(whichBtn == 'Toilet'){	
+			e.source.image = 'images/others/hygiene/state1/toilet.png';
+		} else if(whichBtn == 'Vomit'){	
+			e.source.image = 'images/others/hygiene/state1/vomit.png';	//Hygiene ends
+		}
+		
+		 else if(whichBtn == 'Bag'){	
+			e.source.image = 'images/others/school/state1/bag.png';	
+		} else if(whichBtn == 'Books'){	
+			e.source.image = 'images/others/school/state1/books.png';
+		} else if(whichBtn == 'Bottle'){	
+			e.source.image = 'images/others/school/state1/bottle.png';
+		} else if(whichBtn == 'DontWantToGo'){	
+			e.source.image = 'images/others/school/state1/dontwanttogo.png';
+		} else if(whichBtn == 'HomeWork'){	
+			e.source.image = 'images/others/school/state1/homework.png';	//School ends
+		}
+		
+		 else if(whichBtn == 'Door'){	
+			e.source.image = 'images/others/sleep/state1/door.png';	
+		} else if(whichBtn == 'Fan'){	
+			e.source.image = 'images/others/sleep/state1/fan.png';
+		} else if(whichBtn == 'FeelingCold'){	
+			e.source.image = 'images/others/sleep/state1/feelingcold.png';
+		} else if(whichBtn == 'Light'){	
+			e.source.image = 'images/others/sleep/state1/light.png';
+		} else if(whichBtn == 'Window'){	
+			e.source.image = 'images/others/sleep/state1/window.png';	//Sleep ends
+		}
+		
+		else if(whichBtn == 'Afternoon'){	
+			e.source.image = 'images/others/time/state1/afternoon.png';	
+		} else if(whichBtn == 'CurrentTime'){	
+			e.source.image = 'images/others/time/state1/currenttime.png';
+		} else if(whichBtn == 'Evening'){	
+			e.source.image = 'images/others/time/state1/evening.png';	
+		} else if(whichBtn == 'Morning'){	
+			e.source.image = 'images/others/time/state1/morning.png';
+		} else if(whichBtn == 'Night'){	
+			e.source.image = 'images/others/time/state1/night.png';
+		} else if(whichBtn == 'Tomorrow'){	
+			e.source.image = 'images/others/time/state1/tomorrow.png';
+		} else if(whichBtn == 'Yesterday'){	
+			e.source.image = 'images/others/time/state1/yesterday.png';	//Time ends
+		}
+		
+   // }
+    
     for(var i = 0; i < btn.length; i++){
         if(e.source !== btn[i]){
            // Changing back the background of the Inactive button to white
-            btn[i].backgroundColor = '#FFF';
+           //btn[i].backgroundColor = '#FFF';
+            
+            //Other button titles
+        	btnTitle = btn[i].title;
+        	
+			//Reset the other buttons
+			if(btnTitle == 'Learning'){
+				btn[i].image = 'images/home/learning.png';
+			} else if(btnTitle == 'Eating'){
+				btn[i].image = 'images/home/eating.png';
+			} else if(btnTitle == 'Play'){	
+				btn[i].image = 'images/home/playing.png';
+			} else if(btnTitle == 'People'){	
+				btn[i].image = 'images/home/people.png';
+			} else if(btnTitle == 'Other'){	
+				btn[i].image = 'images/home/others.png';			//HomeButtons Ends
+			} else if(btnTitle == 'AddOns'){
+				btn[i].image = 'images/eating/addons.png';
+			} else if(btnTitle == 'Beverages'){
+				btn[i].image = 'images/eating/beverages.png';
+			} else if(btnTitle == 'Breakfast'){	
+				btn[i].image = 'images/eating/breakfast.png';
+			} else if(btnTitle == 'Cutlery'){	
+				btn[i].image = 'images/eating/cutlery.png';
+			} else if(btnTitle == 'Dinner'){	
+				btn[i].image = 'images/eating/dinner.png';
+			} else if(btnTitle == 'Fruit'){	
+				btn[i].image = 'images/eating/fruits.png';
+			} else if(btnTitle == 'Lunch'){	
+				btn[i].image = 'images/eating/lunch.png';
+			} else if(btnTitle == 'Snacks'){	
+				btn[i].image = 'images/eating/snacks.png';		//Eating Buttons Ends
+			} else if(btnTitle == 'Butter'){
+				btn[i].image = 'images/eating/addons/butter.png';
+			} else if(btnTitle == 'Jam'){	
+				btn[i].image = 'images/eating/addons/jam.png';
+			} else if(btnTitle == 'Masala'){	
+				btn[i].image = 'images/eating/addons/masala.png';
+			} else if(btnTitle == 'Pepper'){	
+				btn[i].image = 'images/eating/addons/pepper.png';
+			} else if(btnTitle == 'Pickle'){	
+				btn[i].image = 'images/eating/addons/pickle.png';
+			} else if(btnTitle == 'Salt'){	
+				btn[i].image = 'images/eating/addons/salt.png';
+			} else if(btnTitle == 'Sauce'){	
+				btn[i].image = 'images/eating/addons/sauce.png';
+			} else if(btnTitle == 'Sugar'){	
+				btn[i].image = 'images/eating/addons/sugar.png';	//AddOns end
+			} else if(btnTitle == 'Juice'){	
+				btn[i].image = 'images/eating/beverages/juice.png';
+			} else if(btnTitle == 'Milk'){	
+				btn[i].image = 'images/eating/beverages/milk.png';
+			}  else if(btnTitle == 'Milkshake'){	
+				btn[i].image = 'images/eating/beverages/milkshake.png';
+			} else if(btnTitle == 'Tea'){	
+				btn[i].image = 'images/eating/beverages/tea.png';	//Beverages end
+			} else if(btnTitle == 'Bread'){	
+				btn[i].image = 'images/eating/breakfast/bread.png';
+			} else if(btnTitle == 'Cornflakes'){	
+				btn[i].image = 'images/eating/breakfast/cornflakes.png';	
+			} else if(btnTitle == 'Eggs'){	
+				btn[i].image = 'images/eating/breakfast/eggs.png';
+			} else if(btnTitle == 'Porridge'){										//Milk removes as same is there in beverage
+				btn[i].image = 'images/eating/breakfast/porridge.png';
+			} else if(btnTitle == 'Rice'){	
+				btn[i].image = 'images/eating/breakfast/rice.png';	//Breakfast ends
+			} else if(btnTitle == 'Bowl'){	
+				btn[i].image = 'images/eating/cutlery/bowl.png';	
+			}  else if(btnTitle == 'Fork'){	
+				btn[i].image = 'images/eating/cutlery/fork.png';
+			} else if(btnTitle == 'Glass'){	
+				btn[i].image = 'images/eating/cutlery/glass.png';	
+			} else if(btnTitle == 'Knife'){	
+				btn[i].image = 'images/eating/cutlery/knife.png';
+			} else if(btnTitle == 'Plate'){	
+				btn[i].image = 'images/eating/cutlery/plate.png';
+			} else if(btnTitle == 'Spoon'){	
+				btn[i].image = 'images/eating/cutlery/spoon.png';	//Breakfast ends
+			}
+			
+			else if(btnTitle == 'curd'){	
+				btn[i].image = 'images/eating/meal/curd.png';
+			} else if(btnTitle == 'Curry'){	
+				btn[i].image = 'images/eating/meal/curry.png';	
+			} else if(btnTitle == 'Dal'){	
+				btn[i].image = 'images/eating/meal/dal.png';	
+			} else if(btnTitle == 'Khichdi'){	
+				btn[i].image = 'images/eating/meal/khichdi.png';
+			} else if(btnTitle == 'NonVeg'){	
+				btn[i].image = 'images/eating/meal/nonveg.png';	
+			} else if(btnTitle == 'Pizza'){	
+				btn[i].image = 'images/eating/meal/pizza.png';
+			} else if(btnTitle == 'Rice'){	
+				btn[i].image = 'images/eating/meal/rice.png';
+			} else if(btnTitle == 'Roti'){	
+				btn[i].image = 'images/eating/meal/roti.png';	//Breakfast ends
+			}
+			
+			else if(btnTitle == 'Apple'){	
+				btn[i].image = 'images/eating/fruits/apple.png';
+			} else if(btnTitle == 'Banana'){	
+				btn[i].image = 'images/eating/fruits/banana.png';	
+			} else if(btnTitle == 'Grapes'){	
+				btn[i].image = 'images/eating/fruits/grapes.png';	
+			} else if(btnTitle == 'Guava'){	
+				btn[i].image = 'images/eating/fruits/guava.png';
+			} else if(btnTitle == 'Mango'){	
+				btn[i].image = 'images/eating/fruits/mango.png';	
+			} else if(btnTitle == 'Orange'){	
+				btn[i].image = 'images/eating/fruits/orange.png';
+			} else if(btnTitle == 'Pineapple'){	
+				btn[i].image = 'images/eating/fruits/pineapple.png';
+			} else if(btnTitle == 'Pomegranate'){	
+				btn[i].image = 'images/eating/fruits/pomegranate.png';
+			} else if(btnTitle == 'Watermelon'){	
+				btn[i].image = 'images/eating/fruits/watermelon.png';	//Fruits ends
+			}
+			
+			else if(btnTitle == 'Biscuits'){	
+				btn[i].image = 'images/eating/snacks/biscuits.png';
+			} else if(btnTitle == 'Chats'){	
+				btn[i].image = 'images/eating/snacks/chats.png';	
+			} else if(btnTitle == 'Chocolate'){	
+				btn[i].image = 'images/eating/snacks/chocolate.png';	
+			} else if(btnTitle == 'IceCream'){	
+				btn[i].image = 'images/eating/snacks/icecream.png';
+			} else if(btnTitle == 'NonVeg'){	
+				btn[i].image = 'images/eating/snacks/nonveg.png';	
+			} else if(btnTitle == 'Noodles'){	
+				btn[i].image = 'images/eating/snacks/noodles.png';
+			} else if(btnTitle == 'Pasteries'){	
+				btn[i].image = 'images/eating/snacks/pasteries.png';
+			} else if(btnTitle == 'Sweets'){	
+				btn[i].image = 'images/eating/snacks/sweets.png';
+			} else if(btnTitle == 'Wafers'){	
+				btn[i].image = 'images/eating/snacks/wafers.png';	//Snacks ends
+			}
+			
+			 else if(btnTitle == 'Music'){	
+				btn[i].image = 'images/play/music.png';
+			} else if(btnTitle == 'OutdoorGames'){	
+				btn[i].image = 'images/play/outdoorgames.png';	
+			} else if(btnTitle == 'Puzzles'){	
+				btn[i].image = 'images/play/puzzles.png';
+			} else if(btnTitle == 'Toys'){	
+				btn[i].image = 'images/play/toys.png';
+			} else if(btnTitle == 'TV'){	
+				btn[i].image = 'images/play/tv.png';
+			} else if(btnTitle == 'VideoGames'){	
+				btn[i].image = 'images/play/videogames.png';	//Play buttons ends
+			}
+			
+			else if(btnTitle == 'ChangeMusic'){	
+				btn[i].image = 'images/play/music/changemusic.png';
+			} else if(btnTitle == 'LetsDance'){	
+				btn[i].image = 'images/play/music/letsdance.png';
+			} else if(btnTitle == 'VolumeUp'){	
+				btn[i].image = 'images/play/music/volumedown.png';
+			} else if(btnTitle == 'VolumeDown'){	
+				btn[i].image = 'images/play/music/volumeup.png';	//Music ends
+			}
+			
+			 else if(btnTitle == 'Cars'){	
+				btn[i].image = 'images/play/outdoorgames/cars.png';
+			} else if(btnTitle == 'Garden'){	
+				btn[i].image = 'images/play/outdoorgames/garden.png';
+			} else if(btnTitle == 'Swing'){	
+				btn[i].image = 'images/play/outdoorgames/swing.png';
+			} else if(btnTitle == 'Terrace'){	
+				btn[i].image = 'images/play/outdoorgames/terrace.png';
+			} else if(btnTitle == 'Walk'){	
+				btn[i].image = 'images/play/outdoorgames/walk.png';	//OutDoorGames ends
+			}
+			
+			else if(btnTitle == 'ActionFigures'){											//"cars" removed as it's already there in OutDoorGames
+				btn[i].image = 'images/play/toys/actionfigures.png';
+			} else if(btnTitle == 'PlayWithMe'){	
+				btn[i].image = 'images/play/toys/playwithme.png';
+			} else if(btnTitle == 'SoftToys'){	
+				btn[i].image = 'images/play/toys/softtoys.png';	//Toys ends
+			}
+			
+			 else if(btnTitle == 'NextChannel'){	
+				btn[i].image = 'images/play/tv/garden.png';		//Volume "Up/Down" removed as it's already there in Music
+			} else if(btnTitle == 'PreviousChannel'){	
+				btn[i].image = 'images/play/tv/swing.png';		//OutDoorGames ends
+			}
+			
+			else if(btnTitle == 'Dad'){	
+				btn[i].image = 'images/people/dad.png';	
+			} else if(btnTitle == 'Mom'){	
+				btn[i].image = 'images/people/mom.png';	
+			} else if(btnTitle == 'Brother'){	
+				btn[i].image = 'images/people/brother.png';
+			} else if(btnTitle == 'Sister'){	
+				btn[i].image = 'images/people/sister.png';	
+			} else if(btnTitle == 'Friends'){	
+				btn[i].image = 'images/people/friends.png';
+			} else if(btnTitle == 'Teacher'){	
+				btn[i].image = 'images/people/teacher.png';
+			} else if(btnTitle == 'Nurse'){	
+				btn[i].image = 'images/people/nurse.png';
+			} else if(btnTitle == 'Doctor'){	
+				btn[i].image = 'images/people/doctor.png';	//People Buttons ends
+			}
+
+			else if(btnTitle == 'Clothes'){	
+				btn[i].image = 'images/others/clothes.png';
+			} else if(btnTitle == 'Emergency'){	
+				btn[i].image = 'images/others/emergency.png';	
+			} else if(btnTitle == 'Hygiene'){	
+				btn[i].image = 'images/others/hygiene.png';
+			} else if(btnTitle == 'School'){	
+				btn[i].image = 'images/others/school.png';
+			} else if(btnTitle == 'Sleep'){	
+				btn[i].image = 'images/others/sleep.png';
+			} else if(btnTitle == 'Time'){	
+				btn[i].image = 'images/others/time.png';	//Others Buttons ends
+			}
+			
+			 else if(btnTitle == 'ChangeFootwear'){	
+				btn[i].image = 'images/others/clothes/changefootwear.png';	
+			} else if(btnTitle == 'ChangeInnerwear'){	
+				btn[i].image = 'images/others/clothes/changeinnerwear.png';
+			} else if(btnTitle == 'ChangeJeans'){	
+				btn[i].image = 'images/others/clothes/changejeans.png';
+			} else if(btnTitle == 'ChangeTShirt'){	
+				btn[i].image = 'images/others/clothes/changetshirt.png';
+			} else if(btnTitle == 'WearNightClothes'){	
+				btn[i].image = 'images/others/clothes/wearnightclothes.png';	//Clothes ends
+			}
+			
+			 else if(btnTitle == 'Bandage'){	
+				btn[i].image = 'images/others/emergency/bandage.png';
+			} else if(btnTitle == 'Help'){	
+				btn[i].image = 'images/others/emergency/help.png';
+			} else if(btnTitle == 'Medicine'){	
+				btn[i].image = 'images/others/emergency/medicine.png';	//Emergency ends
+			}
+			
+			 else if(btnTitle == 'Bath'){	
+				btn[i].image = 'images/others/hygiene/bath.png';	
+			} else if(btnTitle == 'Brush'){	
+				btn[i].image = 'images/others/hygiene/brush.png';
+			} else if(btnTitle == 'Facewash'){	
+				btn[i].image = 'images/others/hygiene/facewash.png';
+			} else if(btnTitle == 'Toilet'){	
+				btn[i].image = 'images/others/hygiene/toilet.png';
+			} else if(btnTitle == 'Vomit'){	
+				btn[i].image = 'images/others/hygiene/vomit.png';	//Hygiene ends
+			}
+			
+			 else if(btnTitle == 'Bag'){	
+				btn[i].image = 'images/others/school/bag.png';	
+			} else if(btnTitle == 'Books'){	
+				btn[i].image = 'images/others/school/books.png';
+			} else if(btnTitle == 'Bottle'){	
+				btn[i].image = 'images/others/school/bottle.png';
+			} else if(btnTitle == 'DontWantToGo'){	
+				btn[i].image = 'images/others/school/dontwanttogo.png';
+			} else if(btnTitle == 'HomeWork'){	
+				btn[i].image = 'images/others/school/homework.png';	//School ends
+			}
+			
+			 else if(btnTitle == 'Door'){	
+				btn[i].image = 'images/others/sleep/door.png';	
+			} else if(btnTitle == 'Fan'){	
+				btn[i].image = 'images/others/sleep/fan.png';
+			} else if(btnTitle == 'FeelingCold'){	
+				btn[i].image = 'images/others/sleep/feelingcold.png';
+			} else if(btnTitle == 'Light'){	
+				btn[i].image = 'images/others/sleep/light.png';
+			} else if(btnTitle == 'Window'){	
+				btn[i].image = 'images/others/sleep/window.png';	//Sleep ends
+			}
+			
+			else if(btnTitle == 'Afternoon'){	
+				btn[i].image = 'images/others/time/afternoon.png';	
+			} else if(btnTitle == 'CurrentTime'){	
+				btn[i].image = 'images/others/time/currenttime.png';
+			} else if(btnTitle == 'Evening'){	
+				btn[i].image = 'images/others/time/evening.png';	
+			} else if(btnTitle == 'Morning'){	
+				btn[i].image = 'images/others/time/morning.png';
+			} else if(btnTitle == 'Night'){	
+				btn[i].image = 'images/others/time/night.png';
+			} else if(btnTitle == 'Tomorrow'){	
+				btn[i].image = 'images/others/time/tomorrow.png';
+			} else if(btnTitle == 'Yesterday'){	
+				btn[i].image = 'images/others/time/yesterday.png';	//Time ends
+			}
+		
+		
         }
     }  
 }
@@ -2430,7 +3092,7 @@ function setMainBtnState(e, firstBtnState, secBtnState){
 		mainButtonState = firstBtnState;
 		
 		e.source.value = 2;
-		//e.source.backgroundColor = '#333';
+		
 	} else if (e.source.value == 2){
 		
 		mainButtonState = secBtnState;
@@ -2445,24 +3107,74 @@ function setMainBtnState(e, firstBtnState, secBtnState){
 //Set background color for Main Buttons
 function changeMainBtnState(e){
 	
+	var whichBtn;
+	//Title of the button
+	whichBtn = e.source.title;
+	
+	//Changing Button images to indicate state change
 	if(e.source.value == 1){
-					
-		//Changing active button background to Grey
-   		 e.source.backgroundColor = '#C1C1C1';
+		
+		//User clicked on any of the main buttons
+		if(whichBtn == 'Like'){
+			e.source.image = 'images/main_buttons/state1/smiley_like.png';
+		} else if(whichBtn == 'Yes'){
+			e.source.image = 'images/main_buttons/state1/tick_yes.png';
+		} else if(whichBtn == 'More'){	
+			e.source.image = 'images/main_buttons/state1/plus_more.png';
+		} else if(whichBtn == 'DontLike'){	
+			e.source.image = 'images/main_buttons/state1/smiley_dont_like.png';
+		} else if(whichBtn == 'No'){	
+			e.source.image = 'images/main_buttons/state1/cross_no.png';
+		} else if(whichBtn == 'Less'){	
+			e.source.image = 'images/main_buttons/state1/minus_less.png';
+		}
+			
+			
 	} else if (e.source.value == 2){
 		
-		//Changing active button background to Grey
-    	e.source.backgroundColor = '#000';
+    	//Change Mainbuttons state images
+		if(whichBtn == 'Like'){
+			e.source.image = 'images/main_buttons/state2/smiley_like.png';
+		} else if(whichBtn == 'Yes'){
+			e.source.image = 'images/main_buttons/state2/tick_yes.png';
+		} else if(whichBtn == 'More'){	
+			e.source.image = 'images/main_buttons/state2/plus_more.png';
+		} else if(whichBtn == 'DontLike'){	
+			e.source.image = 'images/main_buttons/state2/smiley_dont_like.png';
+		} else if(whichBtn == 'No'){	
+			e.source.image = 'images/main_buttons/state2/cross_no.png';
+		} else if(whichBtn == 'Less'){	
+			e.source.image = 'images/main_buttons/state2/minus_less.png';
+		}
 	}
     
+    //Changing inactive buttons back to normal button state
     for(var i = 0; i < mainBtn.length; i++){
         if(e.source !== mainBtn[i]){
-           // Changing back the background of the Inactive button to white
-            mainBtn[i].backgroundColor = '#FFF';
+        	
+        	//Other button titles
+        	otherBtnTitle = mainBtn[i].title;
+        	
+        	Titanium.API.info(mainBtn[i].title + "-");
+        	
+			//User clicked on any of the main buttons
+			if(otherBtnTitle == 'Like'){
+				mainBtn[i].image = 'images/main_buttons/smiley_like.png';
+			} else if(otherBtnTitle == 'Yes'){
+				mainBtn[i].image = 'images/main_buttons/tick_yes.png';
+			} else if(otherBtnTitle == 'More'){	
+        		mainBtn[i].image = 'images/main_buttons/plus_more.png';
+			} else if(otherBtnTitle == 'DontLike'){
+				mainBtn[i].image = 'images/main_buttons/smiley_dont_like.png';
+			} else if(otherBtnTitle == 'No'){
+				mainBtn[i].image = 'images/main_buttons/cross_no.png';
+			} else if(otherBtnTitle == 'Less'){
+				mainBtn[i].image = 'images/main_buttons/minus_less.png';
+			}
+
         }
     }  
 }
-
 
 function getAudioFile(filePath){
 	var audio = Ti.Media.createSound({
@@ -2478,7 +3190,11 @@ function getAudioFile(filePath){
 scrollView.add(centerButtons); 
 
 //Add button wrappers and scroller
-win.add(mainHolder);
+//win.add(mainHolder);
+
+win.add(mainHolderLeft);
+win.add(mainHolderRight);
+
 win.add(scrollView);
 
 // open tab group

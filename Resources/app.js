@@ -1,7 +1,7 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 // Github Push
 
-Titanium.UI.setBackgroundColor('#000');
+Ti.UI.setBackgroundColor('#000');
 
 var mainButtonState = null;
 var actionButtonState = null;	//Which action button is currently active
@@ -11,36 +11,42 @@ var mainBtn = [], btn = [];
 
 var inside = false;
 
+//Detect device height & width
+var detectedWidth = Titanium.Platform.displayCaps.platformWidth;
+var detectedHeight = Titanium.Platform.displayCaps.platformHeight;
 
+Ti.API.info("height " + detectedHeight + "; Width " + detectedWidth);
+
+Ti.API.info("Model " + Titanium.Platform.model);
 // create base UI tab and root window
-var win = Titanium.UI.createWindow({  
+var win = Ti.UI.createWindow({  
     title:'Jellow',
     backgroundColor:'#fff',
+    height: detectedHeight,
+    width: detectedWidth,
+    top: 0,
+    left: 0
 });
 
-//Main-Buttons wrapper
-var mainHolder = Titanium.UI.createView({
-	width:'auto',
-	height: 'auto',
-});
-
-var mainHolderLeft = Titanium.UI.createView({
+//Left Main Menu
+var mainHolderLeft = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
 	zIndex: 1,
 	left: 0
 });
 
+//Right Main Menu
 var mainHolderRight = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
 	zIndex: 1,
-	right: 0
+	left: detectedWidth-110
 });
 	
 //ScrollView
-var scrollView = Titanium.UI.createScrollView({ 
-	width: 640,
+var scrollView = Ti.UI.createScrollView({ 
+	width: detectedWidth,
 	contentWidth: 110, 
 	contentHeight: 'auto',
 	top:0,
@@ -52,9 +58,10 @@ var scrollView = Titanium.UI.createScrollView({
 
 //Scrolling buttons at the center
 var centerButtons = Ti.UI.createView({ 
-		width: 110,
+		width: detectedWidth-220,
 		height: 'auto',
-		left: 110,
+		//backgroundColor: "#333",
+		left:110,
 		top:10 
 	});
 
@@ -351,7 +358,7 @@ var othersButtons =[
 	{ title: 'Hygiene', path: 'images/others/hygiene.png'},			//Button: 176
 	{ title: 'School', path: 'images/others/school.png'},			//Button: 177
 	{ title: 'Sleep', path: 'images/others/sleep.png'},				//Button: 178
-	{ title: 'Time', path: 'images/others/clock.png'},				//Button: 179
+	{ title: 'Time', path: 'images/others/time.png'},				//Button: 179
 	{ title: 'goHome', path: 'images/main_buttons/home.png'}			//Button: home
 ]
 
@@ -1742,28 +1749,28 @@ win.addEventListener('click', function(e){
 			soundPath('media/learning/stationery/Sharpener.mp3');
 		} else if (actionButtonState == 85){
 			//If 'AddOns'
-			soundPath('media/learning/stationery/AddOns.mp3');
+			soundPath('media/eating/AddOns.mp3');
 		} else if (actionButtonState == 86){
 			//If 'Beverages'
-			soundPath('media/learning/stationery/Beverage.mp3');
+			soundPath('media/eating/Beverages.mp3');
 		} else if (actionButtonState == 87){
 			//If 'Breakfast'
-			soundPath('media/learning/stationery/Breakfast.mp3');
+			soundPath('media/eating/Breakfast.mp3');
 		} else if (actionButtonState == 88){
 			//If 'Cutlery'
-			soundPath('media/learning/stationery/Cutlery.mp3');
+			soundPath('media/eating/Cutlery.mp3');
 		} else if (actionButtonState == 89){
 			//If 'Dinner'
-			soundPath('media/learning/stationery/Dinner.mp3');
+			soundPath('media/eating/Dinner.mp3');
 		} else if (actionButtonState == 90){
 			//If 'Fruit'
-			soundPath('media/learning/stationery/Fruit.mp3');
+			soundPath('media/eating/Fruits.mp3');
 		} else if (actionButtonState == 91){
 			//If 'Lunch'
-			soundPath('media/learning/stationery/Lunch.mp3');
+			soundPath('media/eating/Lunch.mp3');
 		} else if (actionButtonState == 92){
 			//If 'Snacks'
-			soundPath('media/learning/stationery/Snack.mp3');
+			soundPath('media/eating/Snack.mp3');
 		} else if (actionButtonState == 93){
 			//If 'Butter'
 			soundPath('media/eating/addon/Butter.mp3');
@@ -2126,12 +2133,22 @@ win.addEventListener('click', function(e){
 /* Button creation function */
 function createButtons(data){
 	
-	var height;
+	var height = 20, leftMargin = 20, counter = 1, set = true, tempWidth = 0;
 	
 	for (var i = 0; i < data.length; i++){
 		
-		//Distance from top where icons should be
-		height = 20+90*i+20*i;
+		if(leftMargin+120 > detectedWidth-220){
+			//Start adding buttons on a new Row
+			height = 20+90*counter+20*counter;		//Distance from top where icons should be
+			
+			//Get total width
+			if(set){
+				tempWidth = leftMargin;
+				set = false;
+			}
+			
+			leftMargin = 20;						//Reset LeftMargin
+		}
 		
 		//Creating each button
 		btn[i]  = Titanium.UI.createImageView({
@@ -2139,13 +2156,22 @@ function createButtons(data){
 			height: 90,
 			width: 90,
 			top: height,
+			left: leftMargin,
 			title : data[i].title,
 			type: 'action',
 			value: 1
 		});
 		
+		//Margin from Left: 120 for 100px width for image button + 20px margin-left
+		leftMargin += 120;
+		
 		btn[i].addEventListener('click',changeState);
+		
+		//Calculating to put centerButtons within the center of the ScrollView 
+		centerButtons.left = 110+20+((detectedWidth-220-tempWidth-20)/2);
+		centerButtons.width = tempWidth;
 
+		Ti.API.info(110+20+((detectedWidth-220-tempWidth-20)/2));
 		//Adding the buttons to the center view
 		centerButtons.add(btn[i]);
 	}
@@ -3188,9 +3214,6 @@ function getAudioFile(filePath){
 
 //Add Scrolling view for the buttons in the middle
 scrollView.add(centerButtons); 
-
-//Add button wrappers and scroller
-//win.add(mainHolder);
 
 win.add(mainHolderLeft);
 win.add(mainHolderRight);

@@ -50,7 +50,7 @@ Ti.Gesture.addEventListener('orientationchange', function(e) {
 var mainHolderLeft = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
-	backgroundColor:'#EEE',
+	//backgroundColor:'#EEE',
 	zIndex: 1,
 	left: 0
 });
@@ -59,7 +59,7 @@ var mainHolderLeft = Ti.UI.createView({
 var mainHolderRight = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
-	backgroundColor:'#777',
+	//backgroundColor:'#777',
 	zIndex: 1,
 	//left: detectedWidth-110
 });
@@ -72,7 +72,7 @@ var scrollView = Ti.UI.createScrollView({
 	contentHeight: 'auto',
 	top:0,
 	left: 0,
-	backgroundColor: '#498af3',
+	//backgroundColor: '#498af3',
 	showVerticalScrollIndicator:true, 
 	showHorizontalScrollIndicator:true,
 });
@@ -81,7 +81,7 @@ var scrollView = Ti.UI.createScrollView({
 var centerButtons = Ti.UI.createView({ 
 		//width: detectedWidth-220,
 		height: 'auto',
-		backgroundColor: "#444",
+		//backgroundColor: "#444",
 		left:110,
 		top:10,
 		zIndex: 5

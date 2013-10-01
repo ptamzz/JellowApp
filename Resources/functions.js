@@ -2,7 +2,14 @@
 
 
 function createButtons(data){
+	/* mainButtonState = 'dontPlay';
+	actionButtonState = null;	//Which action button is currently active 
 	
+	audio = null;
+	
+	Ti.API.info("Test: " + audio); */
+
+
 	var gridWidth, column = 0, i = 0, numColumns = 0, numRows = 0, temp = 1;
 	
 	//Determing with of scrollview area
@@ -422,6 +429,7 @@ function soundPath(path){
 		audio.play(); //Play Audio
 
 	} else if (mainButtonState == null){
+		
 		var audio = Ti.Media.createSound({
 			url: path 
 		})

@@ -23,6 +23,7 @@ var win = Ti.UI.createWindow({
     width: detectedWidth,
     top: 0,
     left: 0,
+    type: 'bg',
     orientationModes: [
         Ti.UI.LANDSCAPE_LEFT,
         Ti.UI.LANDSCAPE_RIGHT,
@@ -50,8 +51,8 @@ Ti.Gesture.addEventListener('orientationchange', function(e) {
 var mainHolderLeft = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
-	//backgroundColor:'#EEE',
 	zIndex: 1,
+	type: 'bg',
 	left: 0
 });
 
@@ -59,29 +60,24 @@ var mainHolderLeft = Ti.UI.createView({
 var mainHolderRight = Ti.UI.createView({
 	width: 110,
 	height: 'auto',
-	//backgroundColor:'#777',
+	type: 'bg',
 	zIndex: 1,
-	//left: detectedWidth-110
 });
 
 	
 //ScrollView
 var scrollView = Ti.UI.createScrollView({ 
-	//width: detectedWidth,
-	//contentWidth: 110, 
 	contentHeight: 'auto',
 	top:0,
 	left: 0,
-	//backgroundColor: '#498af3',
+	type: 'bg',
 	showVerticalScrollIndicator:true, 
 	showHorizontalScrollIndicator:true,
 });
 
 //Scrolling buttons at the center
 var centerButtons = Ti.UI.createView({ 
-		//width: detectedWidth-220,
 		height: 'auto',
-		//backgroundColor: "#444",
 		left:110,
 		top:10,
 		zIndex: 5
@@ -96,6 +92,12 @@ var whichView = null;
  
 //Sound file handing through user click event
 win.addEventListener('click', function(e){
+	
+	/*
+	 * If click is not in one of the background views
+	 */
+	if (e.source.type != 'bg') {
+		
 	
 	//Get which button the user clicked
 	var whichView = e.source.title;
@@ -1147,6 +1149,10 @@ win.addEventListener('click', function(e){
 	//If No actions are selected
 	if(actionButtonState == null){
 		
+		/*
+		 * Figuring out which main button audio to play
+		 */
+		
 		if(mainButtonState == 1){
 			//Like: First Sound
 			audio = getAudioFile('media/home/like.mp3');
@@ -1205,6 +1211,12 @@ win.addEventListener('click', function(e){
 			play = 1;
 		}
 	} else {
+		
+		/*
+		 * Figuring out which action audio to play
+		 */
+		
+		
 		//Action button is on
 		
 		if(actionButtonState == 0){
@@ -1790,6 +1802,8 @@ win.addEventListener('click', function(e){
 			soundPath('media/others/time/Yesterday.mp3');
 		}
 	}
+	
+	} //Ends if (e.source.type != 'bg)
 	
 })
 
